@@ -2,14 +2,19 @@ using UnityEngine;
 
 namespace Geekbrains
 {
-    public class BaseController<T> : IRegistrator<T>
+    public class BaseController<T> : IRegistrator<T>, IEventDispatcher
         where T : BaseModel
     {
         protected T _model;
 
-        public BaseController() {}
+        private EventDispatcher _dispatcher; 
 
-        public BaseController(T model)
+        public BaseController()
+        {
+            _dispatcher = new EventDispatcher();
+        }
+
+        public BaseController(T model) : base()
         {
             Register(model);
         }
@@ -22,6 +27,18 @@ namespace Geekbrains
         public void Unregister(T record)
         {
             Debug.Log("Not supported");
+        }
+
+        public void DispatchEvent<E>(E eventArgs)
+            where E : BaseEvent
+        {
+            _dispatcher.DispatchEvent(eventArgs);
+        }
+
+        public void AddEventListener<E>(IEventListener<E> listener)
+            where E : BaseEvent
+        {
+            _dispatcher.AddEventListener(listener);
         }
     }
 }
