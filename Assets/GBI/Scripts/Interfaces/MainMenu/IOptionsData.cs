@@ -6,10 +6,6 @@ namespace Geekbrains
 {
     public interface IOptionsData<T>
     {
-        void ReadDataFromFile();
-
-        void WriteDataToFile();
-
         List<object> GetOptions();
 
         void ChangeParameter(string key, T parameterValue);
