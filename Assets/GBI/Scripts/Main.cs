@@ -3,21 +3,72 @@ using UnityEngine;
 
 namespace Geekbrains
 {
+    /// <summary>
+    /// Главная точка входа всей игры
+    /// </summary>
+    /// <see cref="Geekbrains.IEventDispatcher"/>
+    /// <br/>
+    /// <see cref="IRegistrator{T}"/>
     public class Main : MonoBehaviour, IRegistrator<IUpdatable>, IRegistrator<IFixedUpdatable>, IEventDispatcher
     {
+        /// <summary>
+        /// Singleton для основного класса
+        /// </summary>
         public static Main Instance { get; private set; }
 
-        private List<IUpdatable>      _updatebles;
+        /// <summary>
+        /// Список объектов, вызываемых в каждом кадре
+        /// </summary>
+        private List<IUpdatable> _updatebles;
+
+        /// <summary>
+        /// Список объектов, вызываемых при каждом шаге физического движка
+        /// </summary>
         private List<IFixedUpdatable> _fixedUpdatebles;
-        private EventDispatcher       _eventDispatcher;
 
+        /// <summary>
+        /// Объект диспатчера событий для главного класса
+        /// </summary>
+        private EventDispatcher _eventDispatcher;
+
+        /// <summary>
+        /// Основная точка доступа к контроллеру скиллов
+        /// </summary>
         public SkillsContainerController SkillsContainerController { get; private set; }
-        public PauseController           PauseController           { get; private set; }
-        public LocaleController          LocaleController          { get; private set; }
-        public InputController           InputController           { get; private set; }
-        public SettingsController        SettingsController        { get; private set; }
-        public InventoryController       InventoryController       { get; private set; }
 
+        /// <summary>
+        /// Основная точка доступа к контроллеру паузы
+        /// </summary>
+        public PauseController PauseController { get; private set; }
+
+        /// <summary>
+        /// Основная точка доступа к контроллеру локали
+        /// </summary>
+        public LocaleController LocaleController { get; private set; }
+
+        /// <summary>
+        /// Основная точка доступа к контроллеру ввода
+        /// </summary>
+        public InputController InputController { get; private set; }
+
+        /// <summary>
+        /// Основная точка доступа к контроллеру настроек
+        /// </summary>
+        public SettingsController SettingsController { get; private set; }
+
+        /// <summary>
+        /// Основная точка доступа к контроллеру инвентаря
+        /// </summary>
+        public InventoryController InventoryController { get; private set; }
+
+        /// <summary>
+        /// Основная точка доступа к контроллеру характеристик персонажа
+        /// </summary>
+        public CharacteristicContainerController CharacteristicContainerController { get; private set; }
+
+        /// <summary>
+        /// Метод, запускающий конструктор
+        /// </summary>
         private void Awake()
         {
             if ( Instance ) {
@@ -27,6 +78,9 @@ namespace Geekbrains
             }
         }
 
+        /// <summary>
+        /// Конструктор, создающий все необходимые объекты для главного класса
+        /// </summary>
         private void Construct()
         {
             _eventDispatcher = new EventDispatcher();
@@ -40,7 +94,10 @@ namespace Geekbrains
             InputController           = new InputController(new BaseModel());
             SettingsController        = new SettingsController(new SettingsModel());
             InventoryController       = new InventoryController(new InventoryModel());
-            new CharacteristicContainerController(new CharacteristicContainerModel());
+            CharacteristicContainerController =
+                new CharacteristicContainerController(new CharacteristicContainerModel());
+            
+            Register(InputController);
         }
 
         public void Update()
@@ -49,6 +106,7 @@ namespace Geekbrains
             _updatebles.ForEach(updatable => updatable.OnUpdate(deltaTime));
         }
 
+        
         private void FixedUpdate()
         {
             var fixedDeltaTime = Time.fixedDeltaTime;

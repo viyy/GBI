@@ -2,19 +2,31 @@ using UnityEngine;
 
 namespace Geekbrains
 {
+    /// <summary>
+    /// Базовый класс контроллера <br/>
+    /// содержит в себе модель и является адаптаром IEventDispatcher
+    /// </summary>
+    /// <typeparam name="T">Класс модели, наследуемого от BaseModel</typeparam>
+    /// <see cref="Geekbrains.BaseModel"/><br/>
+    /// <see cref="Geekbrains.IEventDispatcher"/><br/>
+    /// <see cref="IRegistrator{T}"/>
     public class BaseController<T> : IRegistrator<T>, IEventDispatcher
         where T : BaseModel
     {
+        /// <summary>
+        /// Объект модели <br/>
+        /// Может быть null
+        /// </summary>
         protected T _model;
 
-        private EventDispatcher _dispatcher; 
+        /// <summary>
+        /// Объект диспатчера
+        /// </summary>
+        private readonly EventDispatcher _dispatcher = new EventDispatcher();
 
-        public BaseController()
-        {
-            _dispatcher = new EventDispatcher();
-        }
+        public BaseController() { }
 
-        public BaseController(T model) : base()
+        public BaseController(T model)
         {
             Register(model);
         }

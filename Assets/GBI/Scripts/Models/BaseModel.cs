@@ -1,14 +1,17 @@
 namespace Geekbrains
 {
+    /// <summary>
+    /// Базовый класс модели <br/>
+    /// является адаптаром IEventDispatcher
+    /// </summary>
+    /// <see cref="Geekbrains.IEventDispatcher"/>
     public class BaseModel : IEventDispatcher
     {
-        private EventDispatcher _dispatcher;
+        /// <summary>
+        /// Объект диспатчера
+        /// </summary>
+        private readonly EventDispatcher _dispatcher = new EventDispatcher();
         
-        public BaseModel()
-        {
-            _dispatcher = new EventDispatcher();
-        }
-
         public void DispatchEvent<T>(T eventArgs)
             where T : BaseEvent
         {

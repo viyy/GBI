@@ -3,8 +3,15 @@ using System.Collections.Generic;
 
 namespace Geekbrains
 {
+    /// <summary>
+    /// Класс для добавления слушателей с запуска событий для слушателя
+    /// </summary>
+    /// <see cref="IEventDispatcher"/>
     public class EventDispatcher : IEventDispatcher
     {
+        /// <summary>
+        /// Список объектов-слушателей событий
+        /// </summary>
         private List<object> _eventListeners;
 
         public EventDispatcher()

@@ -1,13 +1,26 @@
-using System;
-
 namespace Geekbrains
 {
+    /// <summary>
+    /// Класс свойств скилла <br/>
+    /// Каждый объект характеристики добавляет скиллу особые свойства 
+    /// </summary>
     public class SkillFeature
     {
-        public bool IsAOE { get; set; }
+        /// <summary>
+        /// Скилл работает по области
+        /// </summary>
+        public bool IsAOE;
 
-        public bool _isAura { get; set; }
+        /// <summary>
+        /// Скилл - аура <br/>
+        /// Можно объединить с IsAOE
+        /// </summary>
+        public bool IsAura;
 
-        public float _damage { get; set; }
+        /// <summary>
+        /// Сколько урона наносит эта часть скилла <br/>
+        /// Негативное значение запускает процесс исцеления
+        /// </summary>
+        public float Damage;
     }
 }

@@ -1,32 +1,47 @@
 using System.Collections.Generic;
 
-namespace Geekbrains {
-    public class CharacteristicContainerModel : BaseModel
+namespace Geekbrains
+{
+    /// <summary>
+    /// Модель хранилища характеристики персонажа
+    /// </summary>
+    /// <see cref="BaseModel"/> <br/>
+    /// <see cref="IRegistrator{T}"/> <br/>
+    /// <see cref="CharacteristicController"/>
+    public class CharacteristicContainerModel : BaseModel, IRegistrator<CharacteristicController>
     {
-        private Dictionary<int, CharacteristicController> _skills;
+        /// <summary>
+        /// Словарь для хранения Характеристик
+        /// </summary>
+        private Dictionary<int, CharacteristicController> _characteristics;
 
         public CharacteristicContainerModel()
         {
-            _skills = new Dictionary<int, CharacteristicController>();
+            _characteristics = new Dictionary<int, CharacteristicController>();
         }
 
         public void Register(CharacteristicController record)
         {
-            _skills.Add(record.Id, record);
+            _characteristics.Add(record.Id, record);
         }
 
-        public void Unregister(SkillController record)
+        public void Unregister(CharacteristicController record)
         {
-            if ( _skills.ContainsKey(record.Id) ) {
-                _skills.Remove(record.Id);
+            if ( _characteristics.ContainsKey(record.Id) ) {
+                _characteristics.Remove(record.Id);
             }
         }
 
+        /// <summary>
+        /// Индексатор, для получения характеристики по Id
+        /// </summary>
+        /// <param name="id">Id характеристики</param>
         public CharacteristicController this[int id]
         {
-            get {
-                if ( _skills.ContainsKey(id) ) {
-                    return _skills[id];
+            get
+            {
+                if ( _characteristics.ContainsKey(id) ) {
+                    return _characteristics[id];
                 }
 
                 return default(CharacteristicController);

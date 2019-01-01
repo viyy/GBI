@@ -1,5 +1,11 @@
 namespace Geekbrains
 {
+    /// <summary>
+    /// Класс контроллера для скилла
+    /// </summary>
+    /// <see cref="BaseController{T}"/> <br/>
+    /// <see cref="IRegistrator{T}"/> <br/>
+    /// <see cref="IRegistrator{T}"/>
     public class SkillController : BaseController<SkillModel>, IRegistrator<SkillFeature>
     {
         public int Id => _model.Id;
