@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,101 +7,72 @@ using UnityEngine.EventSystems;
 
 namespace Geekbrains
 {
-    public class MainMenuController : MonoBehaviour
+    internal class MainMenuController : MonoBehaviour, IMenuController
     {
+        private static MainMenuController instance = null;
 
-        #region Fields
+        internal static MainMenuController Instance { get; private set; }
 
-        [Header("Menu Extensions")]
-        [SerializeField]
-        private Canvas _loadGameMenuExtension;
+        private MainMenuView _mainMenuView;
 
-        [SerializeField]
-        private Canvas _optionsMenuExtension;
+        internal event Action OnClickNewGame;
 
-        [SerializeField]
-        private Canvas _newGameMenuExtension;
+        internal event Action OnClickLoadGame;
 
-        [Header("Menus")]
-        [SerializeField]
-        private Canvas _mainMenu;
+        internal event Action OnClickOptions;
 
-        [SerializeField]
-        private GameObject _firstSelectedItemMainMenu;
-
-        [SerializeField]
-        private Canvas _optionsMenu;
-
-        [SerializeField]
-        private GameObject _firstSelectedItemOptionsMenu;
-
-        private List<Canvas> _extensionMenus = new List<Canvas>();
-
-        #endregion
+        internal event Action OnClickExit;
 
         private void Start()
         {
-            _extensionMenus.Add(_loadGameMenuExtension);
-            _extensionMenus.Add(_optionsMenuExtension);
-            _extensionMenus.Add(_newGameMenuExtension);
+            if (Instance)
+                DestroyImmediate(this);
+            else
+                Instance = this;
+
+            _mainMenuView = GetComponent<MainMenuView>();
+            _mainMenuView.newGameButton.onClick.AddListener(OpenNewGame);
+            _mainMenuView.loadGameButton.onClick.AddListener(OpenLoadGame);
+            _mainMenuView.optionsButton.onClick.AddListener(OpenOptions);
+            _mainMenuView.exitButton.onClick.AddListener(OpenExitGame);
         }
 
-        public void OpenNewGameMenu()
+        private void OnDestroy()
         {
-            EnableMenuExtension(_newGameMenuExtension);
+            _mainMenuView.newGameButton.onClick.RemoveListener(OpenNewGame);
+            _mainMenuView.loadGameButton.onClick.RemoveListener(OpenLoadGame);
+            _mainMenuView.optionsButton.onClick.RemoveListener(OpenOptions);
+            _mainMenuView.exitButton.onClick.RemoveListener(OpenExitGame);
         }
 
-        public void OpenLoadGameMenu()
+        private void OpenNewGame()
         {
-            EnableMenuExtension(_loadGameMenuExtension);
+            OnClickNewGame.Invoke();
         }
 
-        public void OpenOptionsMenu()
+        private void OpenLoadGame()
         {
-            EnableMenuExtension(_optionsMenuExtension);
-            _mainMenu.enabled = false;
-            _optionsMenu.enabled = true;
-            SetCurrentSelectedMenuItem(_firstSelectedItemOptionsMenu);
+            OnClickLoadGame.Invoke();
         }
 
-        public void OpenMainMenu()
+        private void OpenExitGame()
         {
-            DisableAllMenuExtension();
-            _optionsMenu.enabled = false;
-            _mainMenu.enabled = true;
-            SetCurrentSelectedMenuItem(_firstSelectedItemMainMenu);
+            OnClickExit.Invoke();
         }
 
-        public void ExitGame()
+        private void OpenOptions()
         {
-            Application.Quit();
-        }
-        
-        private void EnableMenuExtension(Canvas menuExtension)
-        {
-            foreach(var menu in _extensionMenus)
-            {
-                if (menu != null)
-                {
-                    
-                    if (menu == menuExtension)
-                    {
-                        menu.enabled = true;
-                    }
-                    else
-                        menu.enabled = false;
-                }
-            }
+            OnClickOptions.Invoke();
         }
 
-        private void DisableAllMenuExtension()
+        public void Hide()
         {
-            foreach (var menu in _extensionMenus) menu.enabled = false;
+            _mainMenuView.Hide();
         }
 
-        private void SetCurrentSelectedMenuItem (GameObject item)
+        public void Show()
         {
-            EventSystem.current.SetSelectedGameObject(item);
+            _mainMenuView.Show();
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace Geekbrains
 {
-    public class MainMenuView : BaseView
+    internal class MainMenuView : BaseView
     {
         [SerializeField]
         internal Button newGameButton;
@@ -23,11 +22,9 @@ namespace Geekbrains
         private void Awake()
         {
             _buttonsList.Add(newGameButton);
+            _buttonsList.Add(loadGameButton);
+            _buttonsList.Add(optionsButton);
+            _buttonsList.Add(exitButton);
         }
-
-        protected override void Start()
-        {
-            base.Start();
-        }       
     }
 }

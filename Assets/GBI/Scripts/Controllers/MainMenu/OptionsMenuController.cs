@@ -1,26 +1,26 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Geekbrains {
-    public class OptionsMenuController : MonoBehaviour
+    internal class OptionsMenuController : MonoBehaviour, IMenuController
     {
         private static OptionsMenuController instance = null;
-
-        private static readonly object threadlock = new object();
-
-        internal AudioOptionsController _audioOptionsController;
-
-        internal VideoOptionsController _videoOptionsController;
         
-        public static OptionsMenuController Instance { get; private set; }
+        internal static OptionsMenuController Instance { get; private set; }
 
-        [SerializeField]
-        private Button _audioOptionsButton;
+        private OptionsMenuView _optionsMenuView;
 
-        [SerializeField]
-        private Button _videoOptionsButton;
+        internal event Action OnClickVolumeSettings;
+
+        internal event Action OnClickVideoSettings;
+
+        internal event Action OnClickControlSettings;
+
+        internal event Action OnClickGameplaySettings;
+
+        internal event Action OnClickExitToMainMenu;
 
         private void Awake()
         {
@@ -28,12 +28,58 @@ namespace Geekbrains {
                 DestroyImmediate(this);
             else
                 Instance = this;
+
+            _optionsMenuView = GetComponent<OptionsMenuView>();
+
+            _optionsMenuView.volumeSettingsButton.onClick.AddListener(OpenVolumeSettings);
+            _optionsMenuView.videoSettingsButton.onClick.AddListener(OpenVideoSettings);
+            _optionsMenuView.controlSettingsButton.onClick.AddListener(OpenControlSettings);
+            _optionsMenuView.gameplaySettingsButton.onClick.AddListener(OpenGameplaySettings);
+            _optionsMenuView.exitToMainMenuButton.onClick.AddListener(OpenExitToMainMenu);
         }
 
-        private void Start()
+        private void OpenExitToMainMenu()
         {
-            _audioOptionsController = AudioOptionsController.Instance;
-            _videoOptionsController = VideoOptionsController.Instance;
+            OnClickExitToMainMenu.Invoke();
+        }
+
+        private void OpenGameplaySettings()
+        {
+            OnClickGameplaySettings.Invoke();
+        }
+
+        private void OpenControlSettings()
+        {
+            OnClickControlSettings.Invoke();
+        }
+
+        private void OpenVideoSettings()
+        {
+            OnClickVideoSettings.Invoke();
+        }
+
+        private void OpenVolumeSettings()
+        {
+            OnClickVolumeSettings.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            _optionsMenuView.volumeSettingsButton.onClick.RemoveListener(OpenVolumeSettings);
+            _optionsMenuView.videoSettingsButton.onClick.RemoveListener(OpenVideoSettings);
+            _optionsMenuView.controlSettingsButton.onClick.RemoveListener(OpenControlSettings);
+            _optionsMenuView.gameplaySettingsButton.onClick.RemoveListener(OpenGameplaySettings);
+            _optionsMenuView.exitToMainMenuButton.onClick.RemoveListener(OpenExitToMainMenu);
+        }
+
+        public void Show()
+        {
+            _optionsMenuView.Show();
+        }
+
+        public void Hide()
+        {
+            _optionsMenuView.Hide();
         }
     }
 }
