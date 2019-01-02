@@ -31,7 +31,7 @@ namespace Geekbrains
 
         public void Unregister(T record)
         {
-            Debug.Log("Not supported");
+            LogWrapper.Info("Not supported");
         }
 
         public void DispatchEvent<T1>(T1 eventArgs)

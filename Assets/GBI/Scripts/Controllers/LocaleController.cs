@@ -34,7 +34,7 @@ namespace Geekbrains
             var dictionary = _model.Dictionary[languageEnum];
 
             if ( dictionary.ContainsKey(key) ) {
-                Debug.LogWarning($"Locale already contains key {key}");
+                LogWrapper.Warning($"Locale already contains key {key}");
 
                 return;
             }

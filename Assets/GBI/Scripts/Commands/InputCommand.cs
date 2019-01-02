@@ -50,7 +50,7 @@ namespace Geekbrains
                 try {
                     InternalExecute();
                 } catch ( Exception e ) {
-                    Debug.LogError(e);
+                    LogWrapper.Error(e);
                 }
             }
 
