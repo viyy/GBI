@@ -33,7 +33,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Индексатор, для получения характеристики по Id
+        /// Индексатор для получения характеристики по Id
         /// </summary>
         /// <param name="id">Id характеристики</param>
         public CharacteristicController this[int id]

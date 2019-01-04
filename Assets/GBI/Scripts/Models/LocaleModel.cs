@@ -2,11 +2,26 @@ using System.Collections.Generic;
 
 namespace Geekbrains
 {
+    /// <summary>
+    /// Модель локализации
+    /// </summary>
     public class LocaleModel : BaseModel
     {
-        public GameLanguageEnum                                         LanguageEnum    { get; set; }
-        public Dictionary<GameLanguageEnum, Dictionary<string, string>> Dictionary      { get; set; }
-        public Dictionary<string, string>                               CurrentLanguage => Dictionary[LanguageEnum];
+        /// <summary>
+        /// Текущий язык игры
+        /// </summary>
+        /// <see cref="GameLanguageEnum"/>
+        public GameLanguageEnum LanguageEnum;
+
+        /// <summary>
+        /// Хранилище переводов
+        /// </summary>
+        public Dictionary<GameLanguageEnum, Dictionary<string, string>> Dictionary;
+
+        /// <summary>
+        /// Свойство текущего перевода
+        /// </summary>
+        public Dictionary<string, string> CurrentLanguage => Dictionary[LanguageEnum];
 
         public LocaleModel()
         {

@@ -44,6 +44,7 @@ namespace Geekbrains
         /// Метод запуска выполнения команды <br/>
         /// После выполенния команды - она автоматически возвращается в пул
         /// </summary>
+        /// <exception cref="Exception"></exception>
         public void Execute()
         {
             if ( !Main.Instance.PauseController.IsPaused || _isEnabledInPause ) {

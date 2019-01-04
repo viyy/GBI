@@ -2,8 +2,18 @@ using System.Collections.Generic;
 
 namespace Geekbrains
 {
+    /// <summary>
+    /// Модель хранилища скиллов
+    /// </summary>
+    /// <see cref="BaseModel"/> <br/>
+    /// <see cref="IRegistrator{T}"/> <br/>
+    /// <see cref="SkillController"/>
     public class SkillsContainerModel : BaseModel, IRegistrator<SkillController>
     {
+        /// <summary>
+        /// Хранилище скиллов
+        /// </summary>
+        /// <see cref="SkillController"/>
         private Dictionary<int, SkillController> _skills;
 
         public SkillsContainerModel()
@@ -23,6 +33,10 @@ namespace Geekbrains
             }
         }
 
+        /// <summary>
+        /// Индексатор для получения скилла по ID
+        /// </summary>
+        /// <param name="id">ID скилла</param>
         public SkillController this[int id]
         {
             get {

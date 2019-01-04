@@ -1,15 +1,20 @@
 using System.Collections.Generic;
 
-namespace Geekbrains {
+namespace Geekbrains
+{
+    /// <summary>
+    /// Модель настроек игры
+    /// </summary>
     public class SettingsModel : BaseModel
     {
-        private Dictionary<string, string> _settings;
-
-        public Dictionary<string, string> Settings => _settings;
+        /// <summary>
+        /// Хранилище настроек
+        /// </summary>
+        public Dictionary<string, string> Settings { get; }
 
         public SettingsModel()
         {
-            _settings = new Dictionary<string, string>();
+            Settings = new Dictionary<string, string>();
         }
     }
 }

@@ -2,10 +2,23 @@ using System.Collections.Generic;
 
 namespace Geekbrains
 {
+    /// <summary>
+    /// Модель скилла
+    /// </summary>
+    /// <see cref="BaseModel"/> <br/>
+    /// <see cref="IRegistrator{T}"/> <br/>
+    /// <see cref="SkillFeature"/>
     public class SkillModel : BaseModel, IRegistrator<SkillFeature>
     {
-        public int Id { get; private set; }
+        /// <summary>
+        /// ID скилла
+        /// </summary>
+        public int Id { get;}
 
+        /// <summary>
+        /// Список свойств скилла
+        /// </summary>
+        /// <see cref="SkillFeature"/>
         private List<SkillFeature> _features;
 
         public SkillModel(int id)
