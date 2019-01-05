@@ -25,9 +25,8 @@ namespace Geekbrains
 
         private OptionsParameter<float> _effectsVolume;
 
-        private List<object> _volumeParameters;
+        private List<OptionsParameter<float>> _volumeParameters;
 
-        public event Action<string> parameterChanged;
 
         public static AudioOptionsModel Instance
         {
@@ -41,32 +40,41 @@ namespace Geekbrains
 
         private AudioOptionsModel()
         {
-            _totalVolume = new OptionsParameter<float>(_totalVolumeKey, 1f);
-            _musicVolume = new OptionsParameter<float>(_musicVolumeKey, 1f);
-            _effectsVolume = new OptionsParameter<float>(_effectsVolumeKey, 1f);
-            _voiceVolume = new OptionsParameter<float>(_voiceVolumeKey, 1f);
+            SetDefaultData();
 
-            _volumeParameters = new List<object>();
-            _volumeParameters.Add(_totalVolume as object);
-            _volumeParameters.Add(_musicVolume as object);
-            _volumeParameters.Add(_effectsVolume as object);
-            _volumeParameters.Add(_voiceVolume as object);
+            _volumeParameters = new List<OptionsParameter<float>>();
+            _volumeParameters.Add(_totalVolume);
+            _volumeParameters.Add(_musicVolume);
+            _volumeParameters.Add(_effectsVolume);
+            _volumeParameters.Add(_voiceVolume);
+        }
+
+        public void SetData(List<OptionsParameter<float>> parametersList)
+        {
+            _volumeParameters = parametersList;
         }
 
         public void ChangeParameter(string key, float parameterValue)
         {
             foreach (var parameter in _volumeParameters)
             {
-                if(parameter is OptionsParameter<float> && (parameter as OptionsParameter<float>).GetKey.Equals(key))
+                if(parameter.GetKey.Equals(key))
                 {
-                    (parameter as OptionsParameter<float>).ChangeValue(parameterValue);
-                    parameterChanged.Invoke(key);
+                    parameter.ChangeValue(parameterValue);
                     break;
                 }
             }
         }
 
-        public List<object> GetOptions()
+        internal void SetDefaultData()
+        {
+            _totalVolume = new OptionsParameter<float>(_totalVolumeKey, 1f);
+            _musicVolume = new OptionsParameter<float>(_musicVolumeKey, 1f);
+            _effectsVolume = new OptionsParameter<float>(_effectsVolumeKey, 1f);
+            _voiceVolume = new OptionsParameter<float>(_voiceVolumeKey, 1f);
+        }
+
+        public List<OptionsParameter<float>> GetOptions()
         {
             return _volumeParameters;
         }

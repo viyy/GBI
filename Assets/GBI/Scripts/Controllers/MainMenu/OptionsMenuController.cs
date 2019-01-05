@@ -1,14 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace Geekbrains {
-    internal class OptionsMenuController : MonoBehaviour, IMenuController
+    internal class OptionsMenuController : IMenuController
     {
         private static OptionsMenuController instance = null;
         
-        internal static OptionsMenuController Instance { get; private set; }
+        internal static OptionsMenuController Instance
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new OptionsMenuController();
+                return instance;
+            }
+        }
 
         private OptionsMenuView _optionsMenuView;
 
@@ -22,54 +27,36 @@ namespace Geekbrains {
 
         internal event Action OnClickExitToMainMenu;
 
-        private void Awake()
+        private OptionsMenuController() { }
+
+        internal void InitializeView(OptionsMenuView optionsMenuView)
         {
-            if (Instance)
-                DestroyImmediate(this);
-            else
-                Instance = this;
-
-            _optionsMenuView = GetComponent<OptionsMenuView>();
-
-            _optionsMenuView.volumeSettingsButton.onClick.AddListener(OpenVolumeSettings);
-            _optionsMenuView.videoSettingsButton.onClick.AddListener(OpenVideoSettings);
-            _optionsMenuView.controlSettingsButton.onClick.AddListener(OpenControlSettings);
-            _optionsMenuView.gameplaySettingsButton.onClick.AddListener(OpenGameplaySettings);
-            _optionsMenuView.exitToMainMenuButton.onClick.AddListener(OpenExitToMainMenu);
+            _optionsMenuView = optionsMenuView;
         }
 
-        private void OpenExitToMainMenu()
+        internal void OpenExitToMainMenu()
         {
             OnClickExitToMainMenu.Invoke();
         }
 
-        private void OpenGameplaySettings()
+        internal void OpenGameplaySettings()
         {
             OnClickGameplaySettings.Invoke();
         }
 
-        private void OpenControlSettings()
+        internal void OpenControlSettings()
         {
             OnClickControlSettings.Invoke();
         }
 
-        private void OpenVideoSettings()
+        internal void OpenVideoSettings()
         {
             OnClickVideoSettings.Invoke();
         }
 
-        private void OpenVolumeSettings()
+        internal void OpenVolumeSettings()
         {
             OnClickVolumeSettings.Invoke();
-        }
-
-        private void OnDestroy()
-        {
-            _optionsMenuView.volumeSettingsButton.onClick.RemoveListener(OpenVolumeSettings);
-            _optionsMenuView.videoSettingsButton.onClick.RemoveListener(OpenVideoSettings);
-            _optionsMenuView.controlSettingsButton.onClick.RemoveListener(OpenControlSettings);
-            _optionsMenuView.gameplaySettingsButton.onClick.RemoveListener(OpenGameplaySettings);
-            _optionsMenuView.exitToMainMenuButton.onClick.RemoveListener(OpenExitToMainMenu);
         }
 
         public void Show()

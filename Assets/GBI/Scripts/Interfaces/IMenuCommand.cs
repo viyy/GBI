@@ -4,8 +4,11 @@ using UnityEngine;
 
 namespace Geekbrains
 {
-    public class VolumeMenuView : MonoBehaviour
+    interface IMenuCommand
     {
+        void Enable();
+
+        void Disable();
 
     }
 }

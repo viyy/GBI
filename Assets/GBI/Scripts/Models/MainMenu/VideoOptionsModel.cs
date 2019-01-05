@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Geekbrains
 {
-    public class VideoOptions : IOptionsData<ResolutionsEnum>, IOptionsData<QualityEnum>
+    public class VideoOptionsModel : IOptionsData<int>
     {
         internal static string _screenResolutionKey;
 
@@ -21,35 +21,30 @@ namespace Geekbrains
 
         public event Action<string> parameterChanged;
 
-        private static VideoOptions instance;
+        private static VideoOptionsModel instance;
 
-        private static readonly object threadlock = new object();
-
-        public static VideoOptions Instance
+        public static VideoOptionsModel Instance
         {
             get
             {
-                lock (threadlock)
-                {
                     if (instance == null)
-                        instance = new VideoOptions();
+                        instance = new VideoOptionsModel();
                     return instance;
-                }
             }
         }
-        private OptionsParameter<ResolutionsEnum> _screenResolution = new OptionsParameter<ResolutionsEnum>(_screenResolutionKey, ResolutionsEnum.HD);
+        private OptionsParameter<int> _screenResolution = new OptionsParameter<int>(_screenResolutionKey, (int)ResolutionsEnum.HD);
 
-        private OptionsParameter<QualityEnum> _textureResolution = new OptionsParameter<QualityEnum>(_textureResolutionKey, QualityEnum.Medium);
+        private OptionsParameter<int> _textureResolution = new OptionsParameter<int>(_textureResolutionKey, (int)QualityEnum.Medium);
 
-        private OptionsParameter<QualityEnum> _numberOfParticles = new OptionsParameter<QualityEnum>(_numberOfParticlesKey, QualityEnum.Medium);
+        private OptionsParameter<int> _numberOfParticles = new OptionsParameter<int>(_numberOfParticlesKey, (int)QualityEnum.Medium);
 
-        private OptionsParameter<QualityEnum> _shadowsQuality = new OptionsParameter<QualityEnum>(_shadowsQualityKey, QualityEnum.Medium);
+        private OptionsParameter<int> _shadowsQuality = new OptionsParameter<int>(_shadowsQualityKey, (int)QualityEnum.Medium);
 
-        private OptionsParameter<QualityEnum> _drawingRange = new OptionsParameter<QualityEnum>(_drawingRangeKey, QualityEnum.Medium);
+        private OptionsParameter<int> _drawingRange = new OptionsParameter<int>(_drawingRangeKey, (int)QualityEnum.Medium);
 
-        private List<object> _videoParameters;
+        private List<OptionsParameter<int>> _videoParameters;
 
-        private VideoOptions()
+        private VideoOptionsModel()
         {
             ResolutionDictionary = new Dictionary<ResolutionsEnum, string>();
             ResolutionDictionary.Add(ResolutionsEnum.XGA, "1024x768");
@@ -60,41 +55,27 @@ namespace Geekbrains
             ResolutionDictionary.Add(ResolutionsEnum.WUXGA, "1920x1200");
             ResolutionDictionary.Add(ResolutionsEnum.UHD, "3840x2160");
 
-            _videoParameters = new List<object>();
-            _videoParameters.Add(_screenResolution as object);
-            _videoParameters.Add(_textureResolution as object);
-            _videoParameters.Add(_numberOfParticles as object);
-            _videoParameters.Add(_shadowsQuality as object);
-            _videoParameters.Add(_drawingRange as object);
+            _videoParameters = new List<OptionsParameter<int>>();
+            _videoParameters.Add(_screenResolution);
+            _videoParameters.Add(_textureResolution);
+            _videoParameters.Add(_numberOfParticles);
+            _videoParameters.Add(_shadowsQuality);
+            _videoParameters.Add(_drawingRange);
         }
 
-        public void ChangeParameter(string key, ResolutionsEnum newResolution)
+        public void ChangeParameter(string key, int newValue)
         {
             foreach (var parameter in _videoParameters)
             {
-                if (parameter is OptionsParameter<ResolutionsEnum> && (parameter as OptionsParameter<ResolutionsEnum>).GetKey.Equals(key))
+                if (parameter.GetKey.Equals(key))
                 {
-                    (parameter as OptionsParameter<ResolutionsEnum>).ChangeValue(newResolution);
-                    parameterChanged.Invoke(key);
+                    parameter.ChangeValue(newValue);
                     break;
                 }
             }
         }
 
-        public void ChangeParameter(string key, QualityEnum newQuality)
-        {
-            foreach (var parameter in _videoParameters)
-            {
-                if (parameter is OptionsParameter<QualityEnum> && (parameter as OptionsParameter<QualityEnum>).GetKey.Equals(key))
-                {
-                    (parameter as OptionsParameter<QualityEnum>).ChangeValue(newQuality);
-                    parameterChanged.Invoke(key);
-                    break;
-                }
-            }
-        }
-
-        public List<object> GetOptions()
+        public List<OptionsParameter<int>> GetOptions()
         {
             return _videoParameters;
         }

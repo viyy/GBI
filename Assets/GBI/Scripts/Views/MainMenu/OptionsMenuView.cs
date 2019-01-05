@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Geekbrains {
@@ -21,13 +19,27 @@ namespace Geekbrains {
         [SerializeField]
         internal Button exitToMainMenuButton;
 
-        private void Awake()
+        private OptionsMenuController _optionsMenuController;
+
+        protected override void Awake()
         {
+            base.Awake();
             _buttonsList.Add(volumeSettingsButton);
             _buttonsList.Add(videoSettingsButton);
             _buttonsList.Add(controlSettingsButton);
             _buttonsList.Add(gameplaySettingsButton);
             _buttonsList.Add(exitToMainMenuButton);
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            _optionsMenuController = OptionsMenuController.Instance;
+            volumeSettingsButton.onClick.AddListener(_optionsMenuController.OpenVolumeSettings);
+            videoSettingsButton.onClick.AddListener(_optionsMenuController.OpenVideoSettings);
+            controlSettingsButton.onClick.AddListener(_optionsMenuController.OpenControlSettings);
+            gameplaySettingsButton.onClick.AddListener(_optionsMenuController.OpenGameplaySettings);
+            exitToMainMenuButton.onClick.AddListener(_optionsMenuController.OpenExitToMainMenu);
         }
     }
 }

@@ -1,17 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 namespace Geekbrains
 {
-    internal class MainMenuController : MonoBehaviour, IMenuController
+    internal class MainMenuController : IMenuController
     {
         private static MainMenuController instance = null;
 
-        internal static MainMenuController Instance { get; private set; }
+        internal static MainMenuController Instance
+        {
+            get
+            {
+                if (instance == null)
+                   instance = new MainMenuController();
+                return instance;
+            }
+        }
+
+        private MainMenuController() { }
 
         private MainMenuView _mainMenuView;
 
@@ -23,44 +29,27 @@ namespace Geekbrains
 
         internal event Action OnClickExit;
 
-        private void Start()
+        internal void InitializeView(MainMenuView mainMenuView)
         {
-            if (Instance)
-                DestroyImmediate(this);
-            else
-                Instance = this;
-
-            _mainMenuView = GetComponent<MainMenuView>();
-            _mainMenuView.newGameButton.onClick.AddListener(OpenNewGame);
-            _mainMenuView.loadGameButton.onClick.AddListener(OpenLoadGame);
-            _mainMenuView.optionsButton.onClick.AddListener(OpenOptions);
-            _mainMenuView.exitButton.onClick.AddListener(OpenExitGame);
+            _mainMenuView = mainMenuView;
         }
 
-        private void OnDestroy()
-        {
-            _mainMenuView.newGameButton.onClick.RemoveListener(OpenNewGame);
-            _mainMenuView.loadGameButton.onClick.RemoveListener(OpenLoadGame);
-            _mainMenuView.optionsButton.onClick.RemoveListener(OpenOptions);
-            _mainMenuView.exitButton.onClick.RemoveListener(OpenExitGame);
-        }
-
-        private void OpenNewGame()
+        internal void OpenNewGame()
         {
             OnClickNewGame.Invoke();
         }
 
-        private void OpenLoadGame()
+        internal void OpenLoadGame()
         {
             OnClickLoadGame.Invoke();
         }
 
-        private void OpenExitGame()
+        internal void OpenExitGame()
         {
             OnClickExit.Invoke();
         }
 
-        private void OpenOptions()
+        internal void OpenOptions()
         {
             OnClickOptions.Invoke();
         }

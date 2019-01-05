@@ -6,7 +6,7 @@ namespace Geekbrains
 {
     public interface IOptionsData<T>
     {
-        List<object> GetOptions();
+        List<OptionsParameter<T>> GetOptions();
 
         void ChangeParameter(string key, T parameterValue);
     }

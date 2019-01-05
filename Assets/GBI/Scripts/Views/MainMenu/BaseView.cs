@@ -13,23 +13,23 @@ namespace Geekbrains
 
         private int _currentButtonIndex = 0;
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            _thisObjectCanvas = GetComponent<Canvas>();
+            _buttonsList = new List<Button>();
         }
 
         protected virtual void Start()
         {
-            Show();
+            _thisObjectCanvas = gameObject.GetComponent<Canvas>();
             _buttonsList[_currentButtonIndex]?.Select();
         }
 
-        public void Show()
+        public virtual void Show()
         {
             _thisObjectCanvas.enabled = true;
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
             _thisObjectCanvas.enabled = false;
         }

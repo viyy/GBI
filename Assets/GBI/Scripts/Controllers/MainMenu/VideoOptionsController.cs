@@ -21,6 +21,6 @@ namespace Geekbrains
             }
         }
 
-        internal VideoOptions _videoOptions = VideoOptions.Instance;
+        internal VideoOptionsModel _videoOptions = VideoOptionsModel.Instance;
     }
 }
