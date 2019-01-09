@@ -30,7 +30,7 @@ namespace Geekbrains
             _loadGameModel = LoadGameModel.Instance;
         }
 
-        internal event Action OnClickCancel;
+        public event Action OnClickCancel;
 
         internal void InitializeView(LoadGameMenuView loadGameMenuView)
         {
@@ -45,6 +45,7 @@ namespace Geekbrains
         public void Show()
         {
             _loadGameMenuView.Show();
+            TransmitDataToView();
         }
 
         public void CloseLoadGameMenu()
@@ -52,15 +53,25 @@ namespace Geekbrains
             OnClickCancel.Invoke();
         }
 
+        public void LoadLocation(int id)
+        {
+            //загрузка соответствующей локации
+        }
+
         private void TransmitDataToView()
         {
             var _loadGameData = _loadGameModel.GetData(dataLoader);
 
-            while(_loadGameData?.Count !=0)
+            if (_loadGameData != null)
             {
-                var _itemData = _loadGameData?.Pop();
-                _loadGameMenuView.AddItemInScrollView(_itemData?.locationKey, _itemData?.playerName + "\n" + _itemData?.savingDateTime, Resources.Load<Sprite>(_itemData?.pathToImage));
+                while (_loadGameData.Count != 0)
+                {
+                    var _itemData = _loadGameData.Pop();
+                    if (_itemData != null)
+                        _loadGameMenuView.AddItemInScrollView(_itemData.id, _itemData.locationKey, _itemData.playerName + "\n" + _itemData.savingDateTime, Resources.Load<Sprite>(_itemData.pathToImage));
+                }
             }
+            _loadGameMenuView.OnClickLocationButton += LoadLocation;
         }
     }
 }

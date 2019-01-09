@@ -21,7 +21,9 @@ namespace Geekbrains
         protected virtual void Start()
         {
             _thisObjectCanvas = gameObject.GetComponent<Canvas>();
-            _buttonsList[_currentButtonIndex]?.Select();
+
+            if(_buttonsList?.Count != 0)
+                _buttonsList[_currentButtonIndex]?.Select();
         }
 
         public virtual void Show()

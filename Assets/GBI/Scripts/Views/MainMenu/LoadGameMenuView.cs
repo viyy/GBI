@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,27 +14,33 @@ namespace Geekbrains
         private RectTransform _contentPanel;
 
         [SerializeField]
-        private Button _loadButton;
-
-        [SerializeField]
         private Button _cancelButton;
 
         private LoadGameController _loadGameController;
 
-        protected override void Awake()
-        {
-        }
+        private Dictionary<Button, int> _locationDictionary;
+
+        public Action<int> OnClickLocationButton;
 
         protected override void Start()
         {
             base.Start();
+            _loadGameController = LoadGameController.Instance;
         }
 
-        internal void AddItemInScrollView(string locationName, string detailedInfo, Sprite imageSprite)
+        internal void AddItemInScrollView(int id, string locationName, string detailedInfo, Sprite imageSprite)
         {
             var _itemView = GameObject.Instantiate(LoadGameContentPrefab);
             _itemView.transform.SetParent(_contentPanel);
             _itemView.GetComponent<PrefabDataSetup>().SetData(locationName, detailedInfo, imageSprite);
+            var _itemButton = _itemView.GetComponentInChildren<Button>();
+            _locationDictionary.Add(_itemButton, id);
+            _itemButton.onClick.AddListener(() => LoadLocation(_locationDictionary[_itemButton]));
+        }
+
+        private void LoadLocation(int id)
+        {
+            OnClickLocationButton.Invoke(id);
         }
 
         public override void Show()
