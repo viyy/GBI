@@ -75,6 +75,8 @@
     <Compile Include="Assets\GBI\Scripts\DataClasses\OptionsPrefabDataSetup.cs" />
     <Compile Include="Assets\GBI\Scripts\DataClasses\PrefabDataSetup.cs" />
     <Compile Include="Assets\GBI\Scripts\DataClasses\SaveData.cs" />
+    <Compile Include="Assets\GBI\Scripts\Enums\MainMenu\ChangerEnum.cs" />
+    <Compile Include="Assets\GBI\Scripts\Enums\MainMenu\CharacterEnum.cs" />
     <Compile Include="Assets\GBI\Scripts\Enums\MainMenu\QualityEnum.cs" />
     <Compile Include="Assets\GBI\Scripts\Enums\MainMenu\ResolutionsEnum.cs" />
     <Compile Include="Assets\GBI\Scripts\Interfaces\IDataLoader.cs" />
@@ -85,7 +87,6 @@
     <Compile Include="Assets\GBI\Scripts\Models\MainMenu\ControlOptionsModel.cs" />
     <Compile Include="Assets\GBI\Scripts\Models\MainMenu\GameplayOptionsModel.cs" />
     <Compile Include="Assets\GBI\Scripts\Models\MainMenu\LoadGameModel.cs" />
-    <Compile Include="Assets\GBI\Scripts\Models\MainMenu\NewGameModel.cs" />
     <Compile Include="Assets\GBI\Scripts\Models\MainMenu\VideoOptionsModel.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\AudioOptionsView.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\BaseView.cs" />

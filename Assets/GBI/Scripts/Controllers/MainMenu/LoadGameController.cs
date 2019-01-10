@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 namespace Geekbrains
 {
@@ -30,7 +28,7 @@ namespace Geekbrains
             _loadGameModel = LoadGameModel.Instance;
         }
 
-        public event Action OnClickCancel;
+        internal event Action OnClickCancel;
 
         internal void InitializeView(LoadGameMenuView loadGameMenuView)
         {
@@ -45,10 +43,17 @@ namespace Geekbrains
         public void Show()
         {
             _loadGameMenuView.Show();
-            TransmitDataToView();
+            try
+            {
+                TransmitDataToView();
+            }
+             catch(NullReferenceException ex)
+            {
+                Debug.Log("При загрузке данных произошла ошибка");
+            }
         }
 
-        public void CloseLoadGameMenu()
+        internal void CloseLoadGameMenu()
         {
             OnClickCancel.Invoke();
         }

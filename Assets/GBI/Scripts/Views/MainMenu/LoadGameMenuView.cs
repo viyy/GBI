@@ -26,6 +26,7 @@ namespace Geekbrains
         {
             base.Start();
             _loadGameController = LoadGameController.Instance;
+            _cancelButton.onClick.AddListener(_loadGameController.CloseLoadGameMenu);
         }
 
         internal void AddItemInScrollView(int id, string locationName, string detailedInfo, Sprite imageSprite)
@@ -47,7 +48,7 @@ namespace Geekbrains
         {
             base.Show();
             _loadGameController = LoadGameController.Instance;
-            _cancelButton.onClick.AddListener(_loadGameController.CloseLoadGameMenu);
         }
+
     }
 }

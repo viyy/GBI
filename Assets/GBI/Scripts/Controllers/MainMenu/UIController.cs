@@ -24,12 +24,16 @@ namespace Geekbrains
         internal OptionsMenuView optionsMenuView;
 
         [SerializeField]
+        internal NewGameMenuView newGameMenuView;
+
+        [SerializeField]
         internal LoadGameMenuView loadGameMenuView;
 
         private void Awake()
         {
             _mainMenuController = MainMenuController.Instance;
             _optionsMenuController = OptionsMenuController.Instance;
+            _newGameController = NewGameController.Instance;
             _loadGameController = LoadGameController.Instance;
             //_audioOptionsController = AudioOptionsController.Instance;
         }
@@ -39,6 +43,7 @@ namespace Geekbrains
             _mainMenuController.InitializeView(mainMenuView);
             _optionsMenuController.InitializeView(optionsMenuView);
             _loadGameController.InitializeView(loadGameMenuView);
+            _newGameController.InitializeView(newGameMenuView);
             OpenMainMenu();
         }
 
@@ -51,6 +56,21 @@ namespace Geekbrains
             _optionsMenuController.OnClickExitToMainMenu -= OpenMainMenu;
             _mainMenuController.OnClickOptions += OpenOptionsMenu;
             _mainMenuController.OnClickLoadGame += OpenLoadGameMenu;
+            _mainMenuController.OnClickNewGame += OpenNewGameMenu;
+        }
+
+        private void OpenNewGameMenu()
+        {
+            _menuSelector.SetCommand(new ShowHideMenu(_newGameController));
+            _menuSelector.Enable();
+            _newGameController.OnClickCancelButton += CloseNewGameMenu;
+        }
+
+        private void CloseNewGameMenu()
+        {
+            _menuSelector.SetCommand(new ShowHideMenu(_newGameController));
+            _menuSelector.Disable();
+            _newGameController.OnClickCancelButton -= CloseNewGameMenu;
         }
 
         private void OpenLoadGameMenu()
