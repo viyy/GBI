@@ -83,6 +83,8 @@ namespace Geekbrains
         /// </summary>
         private void Construct()
         {
+            Instance = this;
+
             _eventDispatcher = new EventDispatcher();
             _updatebles      = new List<IUpdatable>();
             _fixedUpdatebles = new List<IFixedUpdatable>();
@@ -103,14 +105,18 @@ namespace Geekbrains
         public void Update()
         {
             var deltaTime = Time.deltaTime;
-            _updatebles.ForEach(updatable => updatable.OnUpdate(deltaTime));
+            for ( var i = 0; i < _updatebles.Count; i++ ) {
+                _updatebles[i].OnUpdate(deltaTime);
+            }
         }
 
         
         private void FixedUpdate()
         {
             var fixedDeltaTime = Time.fixedDeltaTime;
-            _fixedUpdatebles.ForEach(updatable => updatable.OnFixedUpdate(fixedDeltaTime));
+            for ( var i = 0; i < _fixedUpdatebles.Count; i++ ) {
+                _fixedUpdatebles[i].OnFixedUpdate(fixedDeltaTime);
+            }
         }
 
         public void Register(IUpdatable record)

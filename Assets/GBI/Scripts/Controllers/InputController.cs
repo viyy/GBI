@@ -32,8 +32,9 @@ namespace Geekbrains
             _commands.Clear();
             
             
-            
-            _commands.ForEach(command => command.Execute());
+            for ( var i = 0; i < _commands.Count; i++ ) {
+                _commands[i].Execute();
+            }
         }
     }
 }

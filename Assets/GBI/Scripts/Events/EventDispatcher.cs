@@ -22,11 +22,10 @@ namespace Geekbrains
         public void DispatchEvent<T>(T eventArgs)
             where T : BaseEvent
         {
-            _eventListeners.ForEach(listener => {
-                                        var eventListener = listener as IEventListener<T>;
-                                        eventListener?.HandleEvent(eventArgs);
-                                    }
-                                   );
+            for ( var i = 0; i < _eventListeners.Count; i++ ) {
+                var eventListener = _eventListeners[i] as IEventListener<T>;
+                eventListener?.HandleEvent(eventArgs);
+            }
         }
 
         public void AddEventListener<T>(IEventListener<T> listener)
