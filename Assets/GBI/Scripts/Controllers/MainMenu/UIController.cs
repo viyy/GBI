@@ -16,6 +16,7 @@ namespace Geekbrains
         private VideoOptionsController _videoOptionsController;
         private ControlOptionsController _controlOptionsController;
         private GameplayOptionsController _gameplayOptionsController;
+        private ModalWindowController _modalWindowController;
 
         [SerializeField]
         internal MainMenuView mainMenuView;
@@ -29,13 +30,20 @@ namespace Geekbrains
         [SerializeField]
         internal LoadGameMenuView loadGameMenuView;
 
+        [SerializeField]
+        internal ModalWindowView modalWindowView;
+
+        [SerializeField]
+        internal AudioOptionsView audioOptionsView;
+
         private void Awake()
         {
             _mainMenuController = MainMenuController.Instance;
             _optionsMenuController = OptionsMenuController.Instance;
             _newGameController = NewGameController.Instance;
             _loadGameController = LoadGameController.Instance;
-            //_audioOptionsController = AudioOptionsController.Instance;
+            _modalWindowController = ModalWindowController.Instance;
+            _audioOptionsController = AudioOptionsController.Instance;
         }
 
         private void Start()
@@ -44,6 +52,8 @@ namespace Geekbrains
             _optionsMenuController.InitializeView(optionsMenuView);
             _loadGameController.InitializeView(loadGameMenuView);
             _newGameController.InitializeView(newGameMenuView);
+            _modalWindowController.InitializeView(modalWindowView);
+            _audioOptionsController.InitializeView(audioOptionsView);
             OpenMainMenu();
         }
 
@@ -57,6 +67,7 @@ namespace Geekbrains
             _mainMenuController.OnClickOptions += OpenOptionsMenu;
             _mainMenuController.OnClickLoadGame += OpenLoadGameMenu;
             _mainMenuController.OnClickNewGame += OpenNewGameMenu;
+            _mainMenuController.OnClickExit += OpenModalWindow;
         }
 
         private void OpenNewGameMenu()
@@ -80,6 +91,13 @@ namespace Geekbrains
             _loadGameController.OnClickCancel += CloseLoadGameMenu;
         }
 
+        private void CloseLoadGameMenu()
+        {
+            _menuSelector.SetCommand(new ShowHideMenu(_loadGameController));
+            _menuSelector.Disable();
+            _loadGameController.OnClickCancel -= CloseLoadGameMenu;
+        }
+
         private void OpenOptionsMenu()
         {
             _menuSelector.SetCommand(new ShowHideMenu(_mainMenuController));
@@ -87,14 +105,41 @@ namespace Geekbrains
             _menuSelector.SetCommand(new ShowHideMenu(_optionsMenuController));
             _menuSelector.Enable();
             _mainMenuController.OnClickOptions -= OpenOptionsMenu;
+            _optionsMenuController.OnClickVolumeSettings += OpenVolumeMenu;
             _optionsMenuController.OnClickExitToMainMenu += OpenMainMenu;
         }
 
-        private void CloseLoadGameMenu()
+        private void OpenVolumeMenu()
         {
-            _menuSelector.SetCommand(new ShowHideMenu(_loadGameController));
+            _menuSelector.SetCommand(new ShowHideMenu(_audioOptionsController));
+            _menuSelector.Enable();
+            _audioOptionsController.OnClickCancel += CloseVolumeMenu;
+        }
+
+        private void CloseVolumeMenu()
+        {
+            _menuSelector.SetCommand(new ShowHideMenu(_audioOptionsController));
             _menuSelector.Disable();
-            _loadGameController.OnClickCancel -= CloseLoadGameMenu;
+            _audioOptionsController.OnClickCancel -= CloseVolumeMenu;
+
+        }
+
+        private void OpenModalWindow()
+        {
+            _menuSelector.SetCommand(new ShowHideMenu(_modalWindowController));
+            _menuSelector.Enable();
+            _modalWindowController.OnDialogResult += ActionAfterExitDialogue;
+        }
+
+        private void ActionAfterExitDialogue(bool result)
+        {
+            if (result)
+                Application.Quit();
+            else
+            {
+                _modalWindowController.OnDialogResult -= ActionAfterExitDialogue;
+                _menuSelector.Disable();
+            }
         }
     }
 }

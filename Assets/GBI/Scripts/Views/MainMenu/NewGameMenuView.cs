@@ -38,6 +38,7 @@ namespace Geekbrains
             _newGameController = NewGameController.Instance;
             _startButton.onClick.AddListener(() => StartNewGame(_playerNameIF.text, (int)_difficaltySlider.value));
             _cancelButton.onClick.AddListener(_newGameController.CloseNewGameMenu);
+            _playerNameIF.onValueChanged.AddListener(SetStartButtonInteractable);
         }
 
         private void StartNewGame(string playerName, int difficalty)
@@ -48,6 +49,14 @@ namespace Geekbrains
         internal void ShowCharacterSprite(Sprite characterSprite)
         {
             _characterImage.sprite = characterSprite;
+        }
+
+        private void SetStartButtonInteractable(string text)
+        {
+            if (text != String.Empty)
+                _startButton.interactable = true;
+            else
+                _startButton.interactable = false;
         }
     }
 }

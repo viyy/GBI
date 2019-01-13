@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Geekbrains
 {
@@ -10,7 +11,9 @@ namespace Geekbrains
 
         private AudioOptionsModel _audioOptionsModel;
 
-        internal AudioOptionsView audioOptionsView;
+        private AudioOptionsView _audioOptionsView;
+
+        internal event Action OnClickCancel;
 
         private static AudioOptionsController instance = null;
         public static AudioOptionsController Instance
@@ -26,8 +29,12 @@ namespace Geekbrains
         private AudioOptionsController()
         {
             _audioOptionsModel = AudioOptionsModel.Instance;
-            //audioOptionsView.audioOptionsController = this;
-            //audioOptionsView.dataRequestEvent += TransmitAudioOptions;
+        }
+
+        internal void InitializeView(AudioOptionsView audioOptionsView)
+        {
+            _audioOptionsView = audioOptionsView;
+            _audioOptionsView.dataRequestEvent += TransmitAudioOptions;
             var data = ReadDataFromFile();
             if (data != null)
                 _audioOptionsModel.SetData(data);
@@ -35,12 +42,12 @@ namespace Geekbrains
 
         public void Show()
         {
-            audioOptionsView.Show();
+            _audioOptionsView.Show();
         }
 
         public void Hide()
         {
-            audioOptionsView.Hide();
+            _audioOptionsView.Hide();
         }
 
         private void TransmitAudioOptions()
@@ -48,7 +55,7 @@ namespace Geekbrains
             var parametersList = _audioOptionsModel.GetOptions();
             foreach (var parameter in parametersList)
             {
-                audioOptionsView.SetOptionValue(parameter.GetKey, parameter.GetValue);
+                _audioOptionsView.SetOptionValue(parameter.GetKey, parameter.GetValue);
             }
         }
 
@@ -59,12 +66,17 @@ namespace Geekbrains
 
         public List<OptionsParameter<float>> ReadDataFromFile()
         {
-            return dataLoader.LoadDataToList(pathToData);
+            return dataLoader?.LoadDataToList(pathToData);
         }
 
         public void WriteDataToFile()
         {
             //вызов метода записи в файл из класса чтения/записи
+        }
+
+        internal void CanceledAudioOptions()
+        {
+            OnClickCancel.Invoke();
         }
     }
 }

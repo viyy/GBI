@@ -67,6 +67,7 @@
     <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\GameplayOptionsController.cs" />
     <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\LoadGameController.cs" />
     <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\MainMenuController.cs" />
+    <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\ModalWindowController.cs" />
     <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\NewGameController.cs" />
     <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\OptionsMenuController.cs" />
     <Compile Include="Assets\GBI\Scripts\Controllers\MainMenu\UIController.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\GameplayMenuView.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\LoadGameMenuView.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\MainMenuView.cs" />
+    <Compile Include="Assets\GBI\Scripts\Views\MainMenu\ModalWindowView.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\NewGameMenuView.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\OptionsMenuView.cs" />
     <Compile Include="Assets\GBI\Scripts\Views\MainMenu\VideoMenuView.cs" />

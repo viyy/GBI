@@ -20,7 +20,7 @@ namespace Geekbrains
 
         private Dictionary<Button, int> _locationDictionary;
 
-        public Action<int> OnClickLocationButton;
+        public event Action<int> OnClickLocationButton;
 
         protected override void Start()
         {
@@ -49,6 +49,5 @@ namespace Geekbrains
             base.Show();
             _loadGameController = LoadGameController.Instance;
         }
-
     }
 }
