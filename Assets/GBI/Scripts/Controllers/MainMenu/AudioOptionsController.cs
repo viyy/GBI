@@ -3,80 +3,131 @@ using System.Collections.Generic;
 
 namespace Geekbrains
 {
-    public class AudioOptionsController : IMenuController
+    /// <summary>
+    /// Класс контроллера меню настроек звука
+    /// </summary>
+    internal class AudioOptionsController : IMenuController
     {
-        internal IDataLoader<OptionsParameter<float>> dataLoader;
+        /// <summary>
+        /// Поле для хранения ссылки на класс реализующий интерфейс IDataLoader
+        /// </summary>
+        internal IDataLoader<OptionsParameter<float>> DataLoader;
 
-        internal string pathToData;
+       /// <summary>
+       /// Поле для хранения ссылки на источник данных
+       /// </summary>
+        internal string PathToData;
 
+        /// <summary>
+        /// Поле для хранения ссылки на модель меню настроек звука
+        /// </summary>
         private AudioOptionsModel _audioOptionsModel;
 
+        /// <summary>
+        /// Поле для хранения ссылки на view меню настроек звука
+        /// </summary>
         private AudioOptionsView _audioOptionsView;
 
-        internal event Action OnClickCancel;
+        /// <summary>
+        /// Событие нажатия кнопки "Отмена"
+        /// </summary>
+        internal event Action OnClickCancelEvent;
 
-        private static AudioOptionsController instance = null;
-        public static AudioOptionsController Instance
+        /// <summary>
+        /// Поле хранящее ссылку на экземпляр класса AudioOptionsController (реализация Singletone)
+        /// </summary>
+        private static AudioOptionsController _instance = null;
+
+        /// <summary>
+        /// Свойство для доступа к экзепляру класса AudioOptionsController (реализация Singletone)
+        /// </summary>
+        internal static AudioOptionsController Instance
         {
             get
             {
-                    if (instance == null)
-                        instance = new AudioOptionsController();
-                    return instance;
+                    if (_instance == null)
+                        _instance = new AudioOptionsController();
+                    return _instance;
             }
         }
 
+        /// <summary>
+        /// Конструктор класса AudioOptionsController
+        /// </summary>
         private AudioOptionsController()
         {
             _audioOptionsModel = AudioOptionsModel.Instance;
         }
 
+        /// <summary>
+        /// Метод инициализации ссылки на экземпляр класса AudioOptionsView и установки начальных параметров
+        /// </summary>
+        /// <param name="audioOptionsView">Сылка на на экземпляр класса AudioOptionsView</param>
         internal void InitializeView(AudioOptionsView audioOptionsView)
         {
             _audioOptionsView = audioOptionsView;
-            _audioOptionsView.dataRequestEvent += TransmitAudioOptions;
-            var data = ReadDataFromFile();
+            if (_audioOptionsView != null)
+                _audioOptionsView.OnDataRequestEvent += TransmitAudioOptions;
+            var data = ReadDataFromSource();
             if (data != null)
-                _audioOptionsModel.SetData(data);
+                _audioOptionsModel?.SetData(data);
         }
 
+
+        /// <summary>
+        /// Метод реализующий интерфейс IMenuController (отображение меню)
+        /// </summary>
         public void Show()
         {
-            _audioOptionsView.Show();
+            _audioOptionsView?.Show();
         }
 
+        /// <summary>
+        /// Метод реализующий интерфейс IMenuController (скрытие меню)
+        /// </summary>
         public void Hide()
         {
-            _audioOptionsView.Hide();
+            _audioOptionsView?.Hide();
         }
 
+        /// <summary>
+        /// Метод передачи данных из экземпляра класса AudioOptionsModel в экземпляр класса AudioOptionsView
+        /// </summary>
         private void TransmitAudioOptions()
         {
-            var parametersList = _audioOptionsModel.GetOptions();
+            var parametersList = _audioOptionsModel?.GetOptions();
             foreach (var parameter in parametersList)
             {
-                _audioOptionsView.SetOptionValue(parameter.GetKey, parameter.GetValue);
+                _audioOptionsView?.SetOptionValue(parameter.GetKey, parameter.GetValue);
             }
+            _audioOptionsView.OnDataRequestEvent -= TransmitAudioOptions;
         }
 
-        public void ChangeValueInModel(string name,  float newValue)
+        /// <summary>
+        /// Метод изменения данных в классе AudioOptionsModel
+        /// </summary>
+        /// <param name="name">Ключ параметра</param>
+        /// <param name="newValue">Значение параметра</param>
+        internal void ChangeValueInModel(string name,  float newValue)
         {
-            _audioOptionsModel.ChangeParameter(name, newValue);
-        } 
-
-        public List<OptionsParameter<float>> ReadDataFromFile()
-        {
-            return dataLoader?.LoadDataToList(pathToData);
+            _audioOptionsModel?.ChangeParameter(name, newValue);
         }
 
-        public void WriteDataToFile()
+        /// <summary>
+        /// Метод считывания данных из источника
+        /// </summary>
+        /// <returns>Ссылка на коллекцию параметров OptionsParameter</returns>
+        internal List<OptionsParameter<float>> ReadDataFromSource()
         {
-            //вызов метода записи в файл из класса чтения/записи
+            return DataLoader?.LoadDataToList(PathToData);
         }
 
+        /// <summary>
+        /// Метод, вызывающий событие OnClickCancel
+        /// </summary>
         internal void CanceledAudioOptions()
         {
-            OnClickCancel.Invoke();
+            OnClickCancelEvent?.Invoke();
         }
     }
 }

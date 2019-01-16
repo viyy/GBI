@@ -8,7 +8,7 @@ namespace Geekbrains {
     {
         private NewGameMenuView _newGameMenuView;
 
-        private static NewGameController instance = null;
+        private static NewGameController _instance = null;
 
         internal event Action<string, int, CharacterEnum> OnClickStartNewGame;
 
@@ -22,9 +22,9 @@ namespace Geekbrains {
         {
             get
             {
-                if (instance == null)
-                    instance = new NewGameController();
-                return instance;
+                if (_instance == null)
+                    _instance = new NewGameController();
+                return _instance;
             }
         }
 

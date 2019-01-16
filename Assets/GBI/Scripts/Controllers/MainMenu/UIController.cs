@@ -113,14 +113,14 @@ namespace Geekbrains
         {
             _menuSelector.SetCommand(new ShowHideMenu(_audioOptionsController));
             _menuSelector.Enable();
-            _audioOptionsController.OnClickCancel += CloseVolumeMenu;
+            _audioOptionsController.OnClickCancelEvent += CloseVolumeMenu;
         }
 
         private void CloseVolumeMenu()
         {
             _menuSelector.SetCommand(new ShowHideMenu(_audioOptionsController));
             _menuSelector.Disable();
-            _audioOptionsController.OnClickCancel -= CloseVolumeMenu;
+            _audioOptionsController.OnClickCancelEvent -= CloseVolumeMenu;
 
         }
 

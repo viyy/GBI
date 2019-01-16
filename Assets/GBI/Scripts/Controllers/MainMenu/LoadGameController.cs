@@ -11,15 +11,15 @@ namespace Geekbrains
 
         private LoadGameMenuView _loadGameMenuView;
 
-        private static LoadGameController instance = null;
+        private static LoadGameController _instance = null;
 
         public static LoadGameController Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new LoadGameController();
-                return instance;
+                if (_instance == null)
+                    _instance = new LoadGameController();
+                return _instance;
             }
         }
 

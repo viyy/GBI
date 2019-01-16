@@ -1,6 +1,9 @@
 ﻿namespace Geekbrains
 {
-    public enum QualityEnum
+    /// <summary>
+    /// Перечисление качества для параметра
+    /// </summary>
+    internal enum QualityEnum
     {
         Low,
         Medium,

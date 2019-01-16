@@ -1,6 +1,9 @@
 ﻿namespace Geekbrains
 {
-    public enum ResolutionsEnum
+    /// <summary>
+    /// Перечисление разрешений экрана
+    /// </summary>
+    internal enum ResolutionsEnum
     {
         SVGA,
         XGA,

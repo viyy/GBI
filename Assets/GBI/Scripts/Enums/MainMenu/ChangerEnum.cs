@@ -1,6 +1,9 @@
 ﻿namespace Geekbrains
 {
-    enum ChangerEnum
+    /// <summary>
+    /// Перечисления направления изменения параметра
+    /// </summary>
+    internal enum ChangerEnum
     {
         Increase,
         Decrease

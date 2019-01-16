@@ -33,7 +33,7 @@ namespace Geekbrains
         {
             var _itemView = GameObject.Instantiate(LoadGameContentPrefab);
             _itemView.transform.SetParent(_contentPanel);
-            _itemView.GetComponent<PrefabDataSetup>().SetData(locationName, detailedInfo, imageSprite);
+            _itemView.GetComponent<LoadGamePrefabDataSetup>().SetData(locationName, detailedInfo, imageSprite);
             var _itemButton = _itemView.GetComponentInChildren<Button>();
             _locationDictionary.Add(_itemButton, id);
             _itemButton.onClick.AddListener(() => LoadLocation(_locationDictionary[_itemButton]));

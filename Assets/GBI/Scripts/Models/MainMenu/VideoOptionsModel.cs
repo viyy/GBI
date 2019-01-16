@@ -1,59 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Geekbrains
 {
-    public class VideoOptionsModel : IOptionsData<int>
+    /// <summary>
+    /// Класс модели меню настроек видео
+    /// </summary>
+    internal class VideoOptionsModel : IOptionsData<int>
     {
-        internal static string _screenResolutionKey;
+        /// <summary>
+        /// Поле, хранящее ключ для именования опции разрешения экрана
+        /// </summary>
+        internal string ScreenResolutionKey;
 
-        internal static string _textureResolutionKey;
+        /// <summary>
+        /// Поле, хранящее ключ для именования опции качества текстур
+        /// </summary>
+        internal string TextureResolutionKey;
 
-        internal static string _numberOfParticlesKey;
+        /// <summary>
+        /// Поле, хранящее ключ для именования опции количества частиц
+        /// </summary>
+        internal string NumberOfParticlesKey;
 
-        internal static string _shadowsQualityKey;
+        /// <summary>
+        /// Поле, хранящее ключ для именования опции качества теней
+        /// </summary>
+        internal string ShadowsQualityKey;
 
-        internal static string _drawingRangeKey;
+        /// <summary>
+        /// Поле, хранящее ключ для именования опции глубины прорисовки
+        /// </summary>
+        internal string DrawingRangeKey;
 
-        private static string _pathToOptionsFile;
+        /// <summary>
+        /// Поле, хранящее ссылку на экземпляр класса VideoOptionsModel (реализация Singletone)
+        /// </summary>
+        private static VideoOptionsModel _instance = null;
 
-        internal Dictionary<ResolutionsEnum, string> ResolutionDictionary { get; private set; }
-
-        public event Action<string> parameterChanged;
-
-        private static VideoOptionsModel instance;
-
+        /// <summary>
+        /// Свойство для доступа к экзепляру класса VideoOptionsModel (реализация Singletone)
+        /// </summary>
         public static VideoOptionsModel Instance
         {
             get
             {
-                    if (instance == null)
-                        instance = new VideoOptionsModel();
-                    return instance;
+                    if (_instance == null)
+                        _instance = new VideoOptionsModel();
+                    return _instance;
             }
         }
-        private OptionsParameter<int> _screenResolution = new OptionsParameter<int>(_screenResolutionKey, (int)ResolutionsEnum.HD);
 
-        private OptionsParameter<int> _textureResolution = new OptionsParameter<int>(_textureResolutionKey, (int)QualityEnum.Medium);
+        /// <summary>
+        /// Поле, хранящее текущие значения опции разрешения экрана
+        /// </summary>
+        private OptionsParameter<int> _screenResolution;
 
-        private OptionsParameter<int> _numberOfParticles = new OptionsParameter<int>(_numberOfParticlesKey, (int)QualityEnum.Medium);
+        /// <summary>
+        /// Поле, хранящее текущие значения опции качества текстур
+        /// </summary>
+        private OptionsParameter<int> _textureResolution;
 
-        private OptionsParameter<int> _shadowsQuality = new OptionsParameter<int>(_shadowsQualityKey, (int)QualityEnum.Medium);
+        /// <summary>
+        /// Поле, хранящее текущие значения опции количества частиц
+        /// </summary>
+        private OptionsParameter<int> _numberOfParticles;
 
-        private OptionsParameter<int> _drawingRange = new OptionsParameter<int>(_drawingRangeKey, (int)QualityEnum.Medium);
+        /// <summary>
+        /// Поле, хранящее текущие значения опции качества теней
+        /// </summary>
+        private OptionsParameter<int> _shadowsQuality;
 
+        /// <summary>
+        /// Поле, хранящее текущие значения опции глубины прорисовки
+        /// </summary>
+        private OptionsParameter<int> _drawingRange;
+
+        /// <summary>
+        /// Коллекция текущих значений настроек видео
+        /// </summary>
         private List<OptionsParameter<int>> _videoParameters;
 
+        /// <summary>
+        /// Конструктор класса VideoOptionsModel
+        /// </summary>
         private VideoOptionsModel()
         {
-            ResolutionDictionary = new Dictionary<ResolutionsEnum, string>();
-            ResolutionDictionary.Add(ResolutionsEnum.XGA, "1024x768");
-            ResolutionDictionary.Add(ResolutionsEnum.SVGA, "800x600");
-            ResolutionDictionary.Add(ResolutionsEnum.WXGA, "1366x768");
-            ResolutionDictionary.Add(ResolutionsEnum.HD, "1280x720");
-            ResolutionDictionary.Add(ResolutionsEnum.FHD, "1920x1080");
-            ResolutionDictionary.Add(ResolutionsEnum.WUXGA, "1920x1200");
-            ResolutionDictionary.Add(ResolutionsEnum.UHD, "3840x2160");
+            SetDefaultData();
 
             _videoParameters = new List<OptionsParameter<int>>();
             _videoParameters.Add(_screenResolution);
@@ -63,6 +95,11 @@ namespace Geekbrains
             _videoParameters.Add(_drawingRange);
         }
 
+        /// <summary>
+        /// Метод установки значения параметра видео (реализация интерфейса IOptionsData)
+        /// </summary>
+        /// <param name="key">Ключ параметра</param>
+        /// <param name="newValue"> Новое значение параметра</param>
         public void ChangeParameter(string key, int newValue)
         {
             foreach (var parameter in _videoParameters)
@@ -75,19 +112,25 @@ namespace Geekbrains
             }
         }
 
+        /// <summary>
+        /// Метод установки значений параметров видео по умолчанию
+        /// </summary>
+        internal void SetDefaultData()
+        {
+            _screenResolution = new OptionsParameter<int>(ScreenResolutionKey, (int)ResolutionsEnum.HD);
+            _textureResolution = new OptionsParameter<int>(TextureResolutionKey, (int)QualityEnum.Medium);
+            _numberOfParticles = new OptionsParameter<int>(NumberOfParticlesKey, (int)QualityEnum.Medium);
+            _shadowsQuality = new OptionsParameter<int>(ShadowsQualityKey, (int)QualityEnum.Medium);
+            _drawingRange = new OptionsParameter<int>(DrawingRangeKey, (int)QualityEnum.Medium);
+        }
+
+        /// <summary>
+        /// Метод, возвращающий коллекцию текущих параметров видео (реализация интерфейса IOptionsData)
+        /// </summary>
+        /// <returns>Ссылка на коллекцию текущих параметров видео</returns>
         public List<OptionsParameter<int>> GetOptions()
         {
             return _videoParameters;
-        }
-
-        public void ReadDataFromFile()
-        {
-            //вызов метода чтения из файла из класса чтения/записи
-        }
-
-        public void WriteDataToFile()
-        {
-            //вызов метода записи в файл из класса чтения/записи
         }
     }
 }

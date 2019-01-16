@@ -3,15 +3,15 @@
 namespace Geekbrains {
     internal class OptionsMenuController : IMenuController
     {
-        private static OptionsMenuController instance = null;
+        private static OptionsMenuController _instance = null;
         
         internal static OptionsMenuController Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new OptionsMenuController();
-                return instance;
+                if (_instance == null)
+                    _instance = new OptionsMenuController();
+                return _instance;
             }
         }
 

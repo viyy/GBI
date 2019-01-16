@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Geekbrains
 {
-    public class ControlMenuView : MonoBehaviour
+    /// <summary>
+    /// Класс, отвечающий за отображение меню настроек управления
+    /// </summary>
+    public class ControlMenuView : BaseView
     {
-
     }
 }

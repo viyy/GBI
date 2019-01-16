@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Geekbrains
 {
-    public class VideoMenuView : MonoBehaviour
+    /// <summary>
+    /// Класс, отвечающий за отображение меню настроек видео
+    /// </summary>
+    internal class VideoMenuView : BaseView
     {
-
     }
 }

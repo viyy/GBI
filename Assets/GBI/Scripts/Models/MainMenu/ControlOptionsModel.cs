@@ -1,18 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public class ControlOptionsModel : MonoBehaviour
+namespace Geekbrains
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Класс модели меню настроек управления
+    /// </summary>
+    internal class ControlOptionsModel
     {
-        
-    }
+        /// <summary>
+        /// Поле, хранящее ссылку на экземпляр класса ControlOptionsModel (реализация Singletone)
+        /// </summary>
+        private static ControlOptionsModel _instance = null;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        /// <summary>
+        /// Свойство для доступа к ссылке на экземпляр класса ControlOptionsModel (реализация Singletone)
+        /// </summary>
+        public static ControlOptionsModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new ControlOptionsModel();
+                return _instance;
+            }
+        }
     }
 }

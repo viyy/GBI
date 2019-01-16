@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +26,7 @@ namespace Geekbrains
 
         public string noButtonText;
 
-        internal event Action<bool> OnDialogResult;
+        internal event Action<bool> OnDialogResultEvent;
 
         protected override void Awake()
         {
@@ -50,10 +49,7 @@ namespace Geekbrains
 
         private void SetButtonClick(Button button)
         {
-            if (button.Equals(_yesButton))
-                OnDialogResult.Invoke(true);
-            if (button.Equals(_noButton))
-                OnDialogResult.Invoke(false);
+                OnDialogResultEvent.Invoke(button.Equals(_yesButton));
         } 
     }
 }

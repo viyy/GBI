@@ -1,6 +1,9 @@
 ﻿namespace Geekbrains
 {
-    enum CharacterEnum
+    /// <summary>
+    /// Перечисление возможных типов главного персонажа
+    /// </summary>
+    internal enum CharacterEnum
     {
         ArcherMen,
         WarlockMen,

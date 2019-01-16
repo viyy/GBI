@@ -4,15 +4,15 @@ namespace Geekbrains
 {
     internal class MainMenuController : IMenuController
     {
-        private static MainMenuController instance = null;
+        private static MainMenuController _instance = null;
 
         internal static MainMenuController Instance
         {
             get
             {
-                if (instance == null)
-                   instance = new MainMenuController();
-                return instance;
+                if (_instance == null)
+                   _instance = new MainMenuController();
+                return _instance;
             }
         }
 

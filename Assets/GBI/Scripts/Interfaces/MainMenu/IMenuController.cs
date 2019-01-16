@@ -1,14 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
-namespace Geekbrains
+﻿namespace Geekbrains
 {
+    /// <summary>
+    /// Интерфейс контроллера меню
+    /// </summary>
     internal interface IMenuController
     {
+        /// <summary>
+        /// Метод отображения меню
+        /// </summary>
         void Show();
 
+        /// <summary>
+        /// Метод скрытия меню
+        /// </summary>
         void Hide();
     }
 }
