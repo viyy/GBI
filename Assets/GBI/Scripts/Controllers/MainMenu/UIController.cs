@@ -88,14 +88,14 @@ namespace Geekbrains
         {
             _menuSelector.SetCommand(new ShowHideMenu(_loadGameController));
             _menuSelector.Enable();
-            _loadGameController.OnClickCancel += CloseLoadGameMenu;
+            _loadGameController.OnClickCancelEvent += CloseLoadGameMenu;
         }
 
         private void CloseLoadGameMenu()
         {
             _menuSelector.SetCommand(new ShowHideMenu(_loadGameController));
             _menuSelector.Disable();
-            _loadGameController.OnClickCancel -= CloseLoadGameMenu;
+            _loadGameController.OnClickCancelEvent -= CloseLoadGameMenu;
         }
 
         private void OpenOptionsMenu()
