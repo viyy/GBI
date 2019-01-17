@@ -6,7 +6,7 @@ namespace Geekbrains
     /// <summary>
     /// Класс, отвечающий за отображение меню настроек управления
     /// </summary>
-    public class ControlMenuView : BaseView
+    internal class ControlMenuView : BaseView
     {
     }
 }

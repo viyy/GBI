@@ -42,6 +42,7 @@ namespace Geekbrains
         internal void InitializeView(ModalWindowView modalWindowView)
         {
             _modalWindowView = modalWindowView;
+            _modalWindowView.OnDialogResultEvent += ReturnResult;
         }
 
         /// <summary>
@@ -58,8 +59,7 @@ namespace Geekbrains
         /// </summary>
         public void Hide()
         {
-            _modalWindowView.Hide();
-            _modalWindowView.OnDialogResultEvent -= ReturnResult;
+            _modalWindowView?.Hide();
         }
 
         /// <summary>
@@ -67,13 +67,12 @@ namespace Geekbrains
         /// </summary>
         public void Show()
         {
-            _modalWindowView.Show();
-            _modalWindowView.OnDialogResultEvent += ReturnResult;
+            _modalWindowView?.Show();
         }
 
         private void ReturnResult(bool result)
         {
-                OnDialogResultEvent.Invoke(result);
+                OnDialogResultEvent?.Invoke(result);
         }
     }
 }

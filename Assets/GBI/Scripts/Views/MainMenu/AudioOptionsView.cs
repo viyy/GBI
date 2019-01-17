@@ -75,7 +75,7 @@ namespace Geekbrains
         /// Переопределение виртуального метода Show() родительского класса для установки наименования меню
         /// и вызова события запроса данных для отображения
         /// </summary>
-        public override void Show()
+        internal override void Show()
         {
             base.Show();
             _volumeMenuLabel.text = _volumeMenuLabelText;

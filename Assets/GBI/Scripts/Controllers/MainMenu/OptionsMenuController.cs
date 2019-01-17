@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace Geekbrains {
+namespace Geekbrains
+{
     internal class OptionsMenuController : IMenuController
     {
         private static OptionsMenuController _instance = null;

@@ -34,7 +34,7 @@ namespace Geekbrains
         internal event Action OnClickCancelEvent;
 
         /// <summary>
-        /// Поле хранящее ссылку на экземпляр класса AudioOptionsController (реализация Singletone)
+        /// Поле, хранящее ссылку на экземпляр класса AudioOptionsController (реализация Singletone)
         /// </summary>
         private static AudioOptionsController _instance = null;
 

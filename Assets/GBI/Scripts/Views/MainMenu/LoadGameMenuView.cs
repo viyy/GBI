@@ -82,7 +82,7 @@ namespace Geekbrains
         /// <summary>
         /// Переопределение метода Show() родительского класса
         /// </summary>
-        public override void Show()
+        internal override void Show()
         {
             base.Show();
             _loadGameController = LoadGameController.Instance;
