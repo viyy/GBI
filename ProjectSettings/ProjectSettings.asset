@@ -4,7 +4,11 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
+<<<<<<< HEAD
   productGUID: 4ce5f188d3792044f963cd9e49b88bc7
+=======
+  productGUID: 68d9a0c65eb0b204f824e6222668925e
+>>>>>>> MainMenu
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +17,11 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
+<<<<<<< HEAD
   productName: GBI
+=======
+  productName: MainMenu
+>>>>>>> MainMenu
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -520,10 +528,17 @@ PlayerSettings:
   webGLCompressionFormat: 1
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
+<<<<<<< HEAD
   scriptingDefineSymbols:
     1: LOG_INFO;LOG_WARNING;LOG_ERROR
   platformArchitecture: {}
   scriptingBackend: {}
+=======
+  scriptingDefineSymbols: {}
+  platformArchitecture: {}
+  scriptingBackend:
+    Metro: 1
+>>>>>>> MainMenu
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
