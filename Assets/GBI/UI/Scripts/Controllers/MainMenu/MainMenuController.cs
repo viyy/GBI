@@ -60,7 +60,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод вызывающий событие для отображения меню новой игры
+        /// Метод, вызывающий событие для отображения меню новой игры
         /// </summary>
         internal void OpenNewGame()
         {
@@ -68,7 +68,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод вызывающий событие для отображения меню загрузки ишры
+        /// Метод, вызывающий событие для отображения меню загрузки ишры
         /// </summary>
         internal void OpenLoadGame()
         {
@@ -76,7 +76,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод вызывающий событие для отображения меню опций
+        /// Метод, вызывающий событие для отображения меню опций
         /// </summary>
         internal void OpenOptions()
         {
@@ -84,7 +84,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод вызывающий событие для открытия модального диалогового окна 
+        /// Метод, вызывающий событие для открытия модального диалогового окна 
         /// </summary>
         internal void OpenExitGame()
         {
@@ -92,7 +92,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод реализующий интерфейс IMenuController (скрытие меню)
+        /// Метод, реализующий интерфейс IMenuController (скрытие меню)
         /// </summary>
         public void Hide()
         {
@@ -100,7 +100,7 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод реализующий интерфейс IMenuController (отображение меню)
+        /// Метод, реализующий интерфейс IMenuController (отображение меню)
         /// </summary>
         public void Show()
         {

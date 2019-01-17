@@ -62,7 +62,7 @@ namespace Geekbrains
         /// <summary>
         /// Метод инициализации ссылки на экземпляр класса LoadGameMenuView
         /// </summary>
-        /// <param name="loadGameMenuView"></param>
+        /// <param name="loadGameMenuView">Ссылка на экземпляр класса отвечающего за отображение</param>
         internal void InitializeView(LoadGameMenuView loadGameMenuView)
         {
             _loadGameMenuView = loadGameMenuView;

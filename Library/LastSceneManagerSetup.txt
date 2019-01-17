@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/GBI/Scenes/MainMenu.unity
+- path: Assets/GBI/UI/Scenes/MainMenu.unity
   isLoaded: 1
   isActive: 1

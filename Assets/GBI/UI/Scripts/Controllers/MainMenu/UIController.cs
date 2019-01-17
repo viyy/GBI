@@ -156,7 +156,7 @@ namespace Geekbrains
             _menuSelector.Disable();
             _menuSelector.SetCommand(new ShowHideMenu(_mainMenuController));
             _menuSelector.Enable();
-            _optionsMenuController.OnClickExitToMainMenu -= OpenMainMenu;
+            _optionsMenuController.OnClickExitToMainMenuEvent -= OpenMainMenu;
             _mainMenuController.OnClickOptionsEvent += OpenOptionsMenu;
             _mainMenuController.OnClickLoadGameEvent += OpenLoadGameMenu;
             _mainMenuController.OnClickNewGameEvent += OpenNewGameMenu;
@@ -213,8 +213,8 @@ namespace Geekbrains
             _menuSelector.SetCommand(new ShowHideMenu(_optionsMenuController));
             _menuSelector.Enable();
             _mainMenuController.OnClickOptionsEvent -= OpenOptionsMenu;
-            _optionsMenuController.OnClickVolumeSettings += OpenVolumeMenu;
-            _optionsMenuController.OnClickExitToMainMenu += OpenMainMenu;
+            _optionsMenuController.OnClickVolumeSettingsEvent += OpenVolumeMenu;
+            _optionsMenuController.OnClickExitToMainMenuEvent += OpenMainMenu;
         }
 
         /// <summary>
