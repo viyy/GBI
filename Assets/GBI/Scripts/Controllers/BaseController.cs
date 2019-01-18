@@ -52,5 +52,17 @@ namespace Geekbrains
         {
             _dispatcher.AddEventListener(listener);
         }
+
+        public void RemoveEventListener<T1>(IEventListener<T1> listener)
+            where T1 : BaseEvent
+        {
+            _dispatcher.RemoveEventListener(listener);
+        }
+
+        public bool HasEventListener<T1>(IEventListener<T1> listener)
+            where T1 : BaseEvent
+        {
+            return _dispatcher.HasEventListener(listener);
+        }
     }
 }

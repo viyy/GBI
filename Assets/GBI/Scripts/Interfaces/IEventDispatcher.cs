@@ -22,5 +22,23 @@
         /// <seealso cref="Geekbrains.IEventListener"/>
         void AddEventListener<T>(IEventListener<T> listener)
             where T : BaseEvent;
+
+        /// <summary>
+        /// Метод удаления слушателя событий
+        /// </summary>
+        /// <param name="listener">Объект слушателя событий</param>
+        /// <typeparam name="T">Тип события, имплементирующий IEventListener</typeparam>
+        /// <seealso cref="Geekbrains.IEventListener"/>
+        void RemoveEventListener<T>(IEventListener<T> listener)
+            where T : BaseEvent;
+
+        /// <summary>
+        /// Метод проверки наличия слушателя событий
+        /// </summary>
+        /// <param name="listener">Объект слушателя событий</param>
+        /// <typeparam name="T">Тип события, имплементирующий IEventListener</typeparam>
+        /// <seealso cref="Geekbrains.IEventListener"/>
+        bool HasEventListener<T>(IEventListener<T> listener)
+            where T : BaseEvent;
     }
 }
