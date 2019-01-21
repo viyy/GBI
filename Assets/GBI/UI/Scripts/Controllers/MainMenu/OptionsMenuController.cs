@@ -8,24 +8,6 @@ namespace Geekbrains
     internal class OptionsMenuController : IMenuController
     {
         /// <summary>
-        /// Поле, хранящее ссылку на экземпляр класса OptionsMenuController (реализация Singletone)
-        /// </summary>
-        private static OptionsMenuController _instance = null;
-
-        /// <summary>
-        /// Свойство для доступа к экзепляру класса OptionsMenuController (реализация Singletone)
-        /// </summary>
-        internal static OptionsMenuController Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new OptionsMenuController();
-                return _instance;
-            }
-        }
-
-        /// <summary>
         /// Поле для хранения ссылки на экземплыр класса OptionsMenuView, отвечающего за отображение меню опций
         /// </summary>
         private OptionsMenuView _optionsMenuView;
@@ -56,6 +38,29 @@ namespace Geekbrains
         internal event Action OnClickExitToMainMenuEvent;
 
         /// <summary>
+        /// Поле, хранящее ссылку на экземпляр класса OptionsMenuController (реализация Singletone)
+        /// </summary>
+        private static OptionsMenuController _instance = null;
+
+        /// <summary>
+        /// Свойство для доступа к экзепляру класса OptionsMenuController (реализация Singletone)
+        /// </summary>
+        internal static OptionsMenuController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new OptionsMenuController();
+                return _instance;
+            }
+        }
+
+        /// <summary>
+        /// Конструктор класса OptionsMenuController
+        /// </summary>
+        private OptionsMenuController() { }
+
+        /// <summary>
         /// Метод инициализации ссылки на экземпляр класса OptionsMenuView
         /// </summary>
         /// <param name="optionsMenuView">Ссылка на экземпляр класса отвечающего за отображение</param>
@@ -69,7 +74,7 @@ namespace Geekbrains
         /// </summary>
         internal void OpenExitToMainMenu()
         {
-            OnClickExitToMainMenuEvent.Invoke();
+            OnClickExitToMainMenuEvent?.Invoke();
         }
 
         /// <summary>
@@ -77,7 +82,7 @@ namespace Geekbrains
         /// </summary>
         internal void OpenGameplaySettings()
         {
-            OnClickGameplaySettingsEvent.Invoke();
+            OnClickGameplaySettingsEvent?.Invoke();
         }
 
         /// <summary>
@@ -85,7 +90,7 @@ namespace Geekbrains
         /// </summary>
         internal void OpenControlSettings()
         {
-            OnClickControlSettingsEvent.Invoke();
+            OnClickControlSettingsEvent?.Invoke();
         }
 
         /// <summary>
@@ -93,7 +98,7 @@ namespace Geekbrains
         /// </summary>
         internal void OpenVideoSettings()
         {
-            OnClickVideoSettingsEvent.Invoke();
+            OnClickVideoSettingsEvent?.Invoke();
         }
 
         /// <summary>
@@ -101,7 +106,7 @@ namespace Geekbrains
         /// </summary>
         internal void OpenVolumeSettings()
         {
-            OnClickVolumeSettingsEvent.Invoke();
+            OnClickVolumeSettingsEvent?.Invoke();
         }
 
         /// <summary>
@@ -109,7 +114,7 @@ namespace Geekbrains
         /// </summary>
         public void Show()
         {
-            _optionsMenuView.Show();
+            _optionsMenuView?.Show();
         }
 
         /// <summary>
@@ -117,7 +122,7 @@ namespace Geekbrains
         /// </summary>
         public void Hide()
         {
-            _optionsMenuView.Hide();
+            _optionsMenuView?.Hide();
         }
     }
 }

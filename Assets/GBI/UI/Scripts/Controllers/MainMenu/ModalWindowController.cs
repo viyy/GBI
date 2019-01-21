@@ -8,6 +8,16 @@ namespace Geekbrains
     public class ModalWindowController : IMenuController
     {
         /// <summary>
+        /// Поле хранящее ссылку на экземпляр класса ModalWindowView
+        /// </summary>
+        private ModalWindowView _modalWindowView;
+
+        /// <summary>
+        /// Событие, возвращающее результат диалга с пользователем
+        /// </summary>
+        internal event Action<bool> OnDialogResultEvent;
+
+        /// <summary>
         /// Поле хранящее ссылку на экземпляр класса ModalWindowController (реализация Singletone)
         /// </summary>
         private static ModalWindowController _instance = null;
@@ -26,14 +36,9 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Поле хранящее ссылку на экземпляр класса ModalWindowView
+        /// Конструктор класса ModalWindowController
         /// </summary>
-        private ModalWindowView _modalWindowView;
-
-        /// <summary>
-        /// Событие, возвращающее результат диалга с пользователем
-        /// </summary>
-        internal event Action<bool> OnDialogResultEvent;
+        private ModalWindowController() { }
 
         /// <summary>
         /// Метод инициализации ссылки на экземпляр класса ModalWindowView
@@ -42,7 +47,8 @@ namespace Geekbrains
         internal void InitializeView(ModalWindowView modalWindowView)
         {
             _modalWindowView = modalWindowView;
-            _modalWindowView.OnDialogResultEvent += ReturnResult;
+            if(_modalWindowView != null)
+                _modalWindowView.OnDialogResultEvent += ReturnResult;
         }
 
         /// <summary>
@@ -51,7 +57,8 @@ namespace Geekbrains
         /// <param name="text"></param>
         internal void SetModalWindowText(string text)
         {
-            _modalWindowView.text = text;
+            if (_modalWindowView != null)
+                _modalWindowView.text = text;
         }
 
         /// <summary>
@@ -72,7 +79,7 @@ namespace Geekbrains
 
         private void ReturnResult(bool result)
         {
-                OnDialogResultEvent?.Invoke(result);
+            OnDialogResultEvent?.Invoke(result);
         }
     }
 }

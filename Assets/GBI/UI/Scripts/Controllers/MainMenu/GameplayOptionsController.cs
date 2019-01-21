@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Geekbrains
+﻿namespace Geekbrains
 {
     /// <summary>
     /// Класс контроллера меню настроек гейплея
@@ -58,7 +55,7 @@ namespace Geekbrains
         /// </summary>
         public void Hide()
         {
-            _gameplayMenuView.Hide();
+            _gameplayMenuView?.Hide();
         }
 
         /// <summary>
@@ -66,7 +63,7 @@ namespace Geekbrains
         /// </summary>
         public void Show()
         {
-            _gameplayMenuView.Show();
+            _gameplayMenuView?.Show();
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Geekbrains
+﻿namespace Geekbrains
 {
     /// <summary>
     /// Класс контроллера меню настроек видео

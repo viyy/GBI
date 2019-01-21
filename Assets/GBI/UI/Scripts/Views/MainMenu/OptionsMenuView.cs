@@ -63,11 +63,11 @@ namespace Geekbrains
         {
             base.Start();
             _optionsMenuController = OptionsMenuController.Instance;
-            volumeSettingsButton.onClick.AddListener(_optionsMenuController.OpenVolumeSettings);
-            videoSettingsButton.onClick.AddListener(_optionsMenuController.OpenVideoSettings);
-            controlSettingsButton.onClick.AddListener(_optionsMenuController.OpenControlSettings);
-            gameplaySettingsButton.onClick.AddListener(_optionsMenuController.OpenGameplaySettings);
-            exitToMainMenuButton.onClick.AddListener(_optionsMenuController.OpenExitToMainMenu);
+            volumeSettingsButton?.onClick.AddListener(_optionsMenuController.OpenVolumeSettings);
+            videoSettingsButton?.onClick.AddListener(_optionsMenuController.OpenVideoSettings);
+            controlSettingsButton?.onClick.AddListener(_optionsMenuController.OpenControlSettings);
+            gameplaySettingsButton?.onClick.AddListener(_optionsMenuController.OpenGameplaySettings);
+            exitToMainMenuButton?.onClick.AddListener(_optionsMenuController.OpenExitToMainMenu);
         }
     }
 }

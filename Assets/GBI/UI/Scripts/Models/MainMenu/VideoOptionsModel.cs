@@ -33,24 +33,6 @@ namespace Geekbrains
         internal string DrawingRangeKey;
 
         /// <summary>
-        /// Поле, хранящее ссылку на экземпляр класса VideoOptionsModel (реализация Singletone)
-        /// </summary>
-        private static VideoOptionsModel _instance = null;
-
-        /// <summary>
-        /// Свойство для доступа к экзепляру класса VideoOptionsModel (реализация Singletone)
-        /// </summary>
-        public static VideoOptionsModel Instance
-        {
-            get
-            {
-                    if (_instance == null)
-                        _instance = new VideoOptionsModel();
-                    return _instance;
-            }
-        }
-
-        /// <summary>
         /// Поле, хранящее текущие значения опции разрешения экрана
         /// </summary>
         private OptionsParameter<int> _screenResolution;
@@ -79,6 +61,24 @@ namespace Geekbrains
         /// Коллекция текущих значений настроек видео
         /// </summary>
         private List<OptionsParameter<int>> _videoParameters;
+
+        /// <summary>
+        /// Поле, хранящее ссылку на экземпляр класса VideoOptionsModel (реализация Singletone)
+        /// </summary>
+        private static VideoOptionsModel _instance = null;
+
+        /// <summary>
+        /// Свойство для доступа к экзепляру класса VideoOptionsModel (реализация Singletone)
+        /// </summary>
+        public static VideoOptionsModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new VideoOptionsModel();
+                return _instance;
+            }
+        }
 
         /// <summary>
         /// Конструктор класса VideoOptionsModel

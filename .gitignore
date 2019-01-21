@@ -24,9 +24,7 @@ QCAR/
 UnityPackageManager/
 Assets/IGNORED
 Assets/IGNORED.meta
-.idea
-Library
-ProjectSettings
+ProjectSettings/
 
 # VS2013
 

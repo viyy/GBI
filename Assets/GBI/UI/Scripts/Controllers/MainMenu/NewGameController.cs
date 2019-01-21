@@ -52,6 +52,11 @@ namespace Geekbrains
         }
 
         /// <summary>
+        /// Конструктор класса NewGameController
+        /// </summary>
+        private NewGameController() { }
+
+        /// <summary>
         /// Метод инициализации ссылки на экземпляр класса NewGameMenuView
         /// </summary>
         /// <param name="newGameMenuView">Ссылка на экзепляр класса, отвечающего за отображение меню новой игры</param>
@@ -67,7 +72,7 @@ namespace Geekbrains
         /// <param name="selectedDifficalty">Выбранная сложность игры</param>
         internal void StartNewGame(string playerName, int selectedDifficalty)
         {
-            OnClickStartNewGame.Invoke(playerName, selectedDifficalty, _currentCharacter);
+            OnClickStartNewGame?.Invoke(playerName, selectedDifficalty, _currentCharacter);
         }
 
         /// <summary>
@@ -75,7 +80,7 @@ namespace Geekbrains
         /// </summary>
         internal void CloseNewGameMenu()
         {
-            OnClickCancelButton.Invoke();
+            OnClickCancelButton?.Invoke();
         }
 
         /// <summary>
@@ -105,7 +110,7 @@ namespace Geekbrains
                     break;
             }
 
-            _newGameMenuView.ShowCharacterSprite(GetCharacterSprite(_currentCharacter));
+            _newGameMenuView?.ShowCharacterSprite(GetCharacterSprite(_currentCharacter));
         }
 
         /// <summary>
@@ -124,7 +129,7 @@ namespace Geekbrains
         /// </summary>
         public void Hide()
         {
-            _newGameMenuView.Hide();
+            _newGameMenuView?.Hide();
             _currentCharacter = 0;
         }
 
@@ -133,8 +138,8 @@ namespace Geekbrains
         /// </summary>
         public void Show()
         {
-            _newGameMenuView.Show();
-            _newGameMenuView.ShowCharacterSprite(GetCharacterSprite(_currentCharacter));
+            _newGameMenuView?.Show();
+            _newGameMenuView?.ShowCharacterSprite(GetCharacterSprite(_currentCharacter));
         }
     }
 }

@@ -117,13 +117,14 @@ namespace Geekbrains
         /// </summary>
         private void TransmitDataToView()
         {
-                while (_loadGameData.Count != 0)
-                {
-                    var _itemData = _loadGameData.Pop();
-                    if (_itemData != null)
-                        _loadGameMenuView.AddItemInScrollView(_itemData.id, _itemData.locationKey, _itemData.playerName + "\n" + _itemData.savingDateTime, Resources.Load<Sprite>(_itemData.pathToImage));
-                }
-            _loadGameMenuView.OnClickLocationButtonEvent += LoadLocation;
+            while (_loadGameData.Count != 0)
+            {
+                var _itemData = _loadGameData.Pop();
+                if (_itemData != null)
+                    _loadGameMenuView?.AddItemInScrollView(_itemData.id, _itemData.locationKey, _itemData.playerName + "\n" + _itemData.savingDateTime, Resources.Load<Sprite>(_itemData.pathToImage));
+            }
+            if (_loadGameMenuView != null)
+                _loadGameMenuView.OnClickLocationButtonEvent += LoadLocation;
         }
     }
 }
