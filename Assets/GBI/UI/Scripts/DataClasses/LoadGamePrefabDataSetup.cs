@@ -34,9 +34,12 @@ namespace Geekbrains
         /// <param name="imageSprite">Скриншот сохраненной игры</param>
         public void SetData(string locationName, string detailedInformation, Sprite imageSprite)
         {
-            _locationName.text = locationName;
-            _detailedInformation.text = detailedInformation;
-            _locationImage.sprite = imageSprite;
+            if(_locationImage != null)
+                _locationName.text = locationName;
+            if(_detailedInformation != null)
+                _detailedInformation.text = detailedInformation;
+            if(_locationImage != null)
+                _locationImage.sprite = imageSprite;
         }
     }
 }

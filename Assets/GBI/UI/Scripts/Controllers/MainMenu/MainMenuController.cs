@@ -8,24 +8,6 @@ namespace Geekbrains
     internal class MainMenuController : IMenuController
     {
         /// <summary>
-        /// Поле, хранящее ссылку на экземпляр класса MainMenuController (реализация Singletone)
-        /// </summary>
-        private static MainMenuController _instance = null;
-
-        /// <summary>
-        /// Свойство для доступа к экзепляру класса MainMenuController (реализация Singletone)
-        /// </summary>
-        internal static MainMenuController Instance
-        {
-            get
-            {
-                if (_instance == null)
-                   _instance = new MainMenuController();
-                return _instance;
-            }
-        }
-
-        /// <summary>
         /// Поле, хранящее ссылку на экземпляр класса MainMenuView, отвечающего за отображение главного меню
         /// </summary>
         private MainMenuView _mainMenuView;
@@ -49,6 +31,29 @@ namespace Geekbrains
         /// Событие нажатия на кнопку выхода из игры
         /// </summary>
         internal event Action OnClickExitEvent;
+
+        /// <summary>
+        /// Поле, хранящее ссылку на экземпляр класса MainMenuController (реализация Singletone)
+        /// </summary>
+        private static MainMenuController _instance = null;
+
+        /// <summary>
+        /// Свойство для доступа к экзепляру класса MainMenuController (реализация Singletone)
+        /// </summary>
+        internal static MainMenuController Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new MainMenuController();
+                return _instance;
+            }
+        }
+
+        /// <summary>
+        /// Конструктор класса MainMenuController
+        /// </summary>
+        private MainMenuController() { }
 
         /// <summary>
         /// Метод инициализации ссылки на экземпляр класса MainMenuView

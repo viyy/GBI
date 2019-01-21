@@ -38,9 +38,14 @@ namespace Geekbrains
         /// <param name="value"></param>
         public void SetData(string name, float value)
         {
-            _optionLabel.text = name;
-            _optionValue.text = (value * multiplier).ToString();
-            _optionSlider.value = value;
+            if(_optionLabel != null)
+                _optionLabel.text = name;
+
+            if (_optionValue != null)
+                _optionValue.text = (value * multiplier).ToString();
+
+            if (_optionSlider != null)
+                _optionSlider.value = value;
         }
     }
 }

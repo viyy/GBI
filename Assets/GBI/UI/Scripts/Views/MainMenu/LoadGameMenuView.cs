@@ -50,7 +50,7 @@ namespace Geekbrains
         {
             base.Start();
             _loadGameController = LoadGameController.Instance;
-            _cancelButton.onClick.AddListener(_loadGameController.CloseLoadGameMenu);
+            _cancelButton?.onClick.AddListener(_loadGameController.CloseLoadGameMenu);
         }
 
         /// <summary>
@@ -62,12 +62,18 @@ namespace Geekbrains
         /// <param name="imageSprite">Скриншот сохраненной игры</param>
         internal void AddItemInScrollView(int id, string locationName, string detailedInfo, Sprite imageSprite)
         {
-            var _itemView = GameObject.Instantiate(_loadGameContentPrefab);
-            _itemView.transform.SetParent(_contentPanel);
-            _itemView.GetComponent<LoadGamePrefabDataSetup>().SetData(locationName, detailedInfo, imageSprite);
-            var _itemButton = _itemView.GetComponentInChildren<Button>();
-            _locationDictionary.Add(_itemButton, id);
-            _itemButton.onClick.AddListener(() => LoadLocation(_locationDictionary[_itemButton]));
+            if (_loadGameContentPrefab != null)
+            {
+                var _itemView = GameObject.Instantiate(_loadGameContentPrefab);
+                _itemView.transform.SetParent(_contentPanel);
+                _itemView.GetComponent<LoadGamePrefabDataSetup>()?.SetData(locationName, detailedInfo, imageSprite);
+                var _itemButton = _itemView.GetComponentInChildren<Button>();
+                if (_itemButton != null)
+                {
+                    _locationDictionary.Add(_itemButton, id);
+                    _itemButton.onClick.AddListener(() => LoadLocation(_locationDictionary[_itemButton]));
+                }
+            }
         }
 
         /// <summary>
@@ -76,7 +82,7 @@ namespace Geekbrains
         /// <param name="id">Идентификатор сохраненной игры</param>
         private void LoadLocation(int id)
         {
-            OnClickLocationButtonEvent.Invoke(id);
+            OnClickLocationButtonEvent?.Invoke(id);
         }
 
         /// <summary>

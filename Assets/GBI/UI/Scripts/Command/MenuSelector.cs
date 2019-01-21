@@ -24,7 +24,7 @@
         /// </summary>
         internal void Enable()
         {
-            _command.Enable();
+            _command?.Enable();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// </summary>
         internal void Disable()
         {
-            _command.Disable();
+            _command?.Disable();
         }
     }
 }

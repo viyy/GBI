@@ -78,7 +78,8 @@ namespace Geekbrains
         internal override void Show()
         {
             base.Show();
-            _volumeMenuLabel.text = _volumeMenuLabelText;
+            if(_volumeMenuLabel != null)
+                _volumeMenuLabel.text = _volumeMenuLabelText;
             OnDataRequestEvent?.Invoke();
         }
 
@@ -89,12 +90,15 @@ namespace Geekbrains
         /// <param name="value">Значение параметра</param>
         internal void SetOptionValue(string nameKey, float value)
         {
-            var parameter = GameObject.Instantiate(_volumeOptionsPrefab);
-            parameter.name = nameKey;
-            parameter.transform.SetParent(_contentPanel);
-            parameter.GetComponent<VolumeOptionsPrefabDataSetup>().SetData(nameKey, value);
-            var slider = parameter.GetComponentInChildren<Slider>();
-            slider.onValueChanged.AddListener(delegate { _audioOptionsController.ChangeValueInModel(parameter.name, value); });
+            if (_volumeOptionsPrefab != null)
+            {
+                var parameter = GameObject.Instantiate(_volumeOptionsPrefab);
+                parameter.name = nameKey;
+                parameter.transform.SetParent(_contentPanel);
+                parameter.GetComponent<VolumeOptionsPrefabDataSetup>()?.SetData(nameKey, value);
+                var slider = parameter.GetComponentInChildren<Slider>();
+                slider?.onValueChanged.AddListener(delegate { _audioOptionsController?.ChangeValueInModel(parameter.name, value); });
+            }
         }
     }
 }

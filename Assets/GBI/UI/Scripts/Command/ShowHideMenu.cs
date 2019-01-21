@@ -24,7 +24,7 @@
         /// </summary>
         public void Enable()
         {
-            _menuController.Show();
+            _menuController?.Show();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@
         /// </summary>
         public void Disable()
         {
-            _menuController.Hide();
+            _menuController?.Hide();
         }
     }
 }

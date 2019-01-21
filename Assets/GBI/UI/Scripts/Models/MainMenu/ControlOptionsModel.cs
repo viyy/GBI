@@ -25,5 +25,10 @@ namespace Geekbrains
                 return _instance;
             }
         }
+
+        /// <summary>
+        /// Конструктор класса ControlOptionsModel
+        /// </summary>
+        private ControlOptionsModel() { }
     }
 }

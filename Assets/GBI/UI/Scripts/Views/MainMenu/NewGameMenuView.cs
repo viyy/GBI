@@ -68,9 +68,9 @@ namespace Geekbrains
         {
             base.Start();
             _newGameController = NewGameController.Instance;
-            _startButton.onClick.AddListener(() => StartNewGame(_playerNameIF.text, (int)_difficaltySlider.value));
-            _cancelButton.onClick.AddListener(_newGameController.CloseNewGameMenu);
-            _playerNameIF.onValueChanged.AddListener(SetStartButtonInteractable);
+            _startButton?.onClick.AddListener(() => StartNewGame(_playerNameIF.text, (int)_difficaltySlider.value));
+            _cancelButton?.onClick.AddListener(_newGameController.CloseNewGameMenu);
+            _playerNameIF?.onValueChanged.AddListener(SetStartButtonInteractable);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Geekbrains
         /// <param name="character">Выбранный персонаж</param>
         private void StartNewGame(string playerName, int difficalty)
         {
-            OnClickStartButtonEvent.Invoke(playerName, difficalty);
+            OnClickStartButtonEvent?.Invoke(playerName, difficalty);
         }
 
         /// <summary>
@@ -90,7 +90,8 @@ namespace Geekbrains
         /// <param name="characterSprite">Спрайт персонажа</param>
         internal void ShowCharacterSprite(Sprite characterSprite)
         {
-            _characterImage.sprite = characterSprite;
+            if(_characterImage != null)
+                _characterImage.sprite = characterSprite;
         }
 
         /// <summary>
@@ -99,6 +100,7 @@ namespace Geekbrains
         /// <param name="text">Введенный в поле имени игрока текст</param>
         private void SetStartButtonInteractable(string text)
         {
+            if(_startButton != null)
                 _startButton.interactable = text != String.Empty;
         }
     }

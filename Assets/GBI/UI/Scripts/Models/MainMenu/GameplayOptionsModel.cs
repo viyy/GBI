@@ -26,5 +26,10 @@ namespace Geekbrains
                 return _instance;
             }
         }
+
+        /// <summary>
+        /// Конструктор класса GameplayOptionsModel
+        /// </summary>
+        private GameplayOptionsModel() { }
     }
 }

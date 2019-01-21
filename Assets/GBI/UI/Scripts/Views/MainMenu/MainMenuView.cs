@@ -56,10 +56,10 @@ namespace Geekbrains
         {
             base.Start();
             _mainMenuController = MainMenuController.Instance;
-            newGameButton.onClick.AddListener(_mainMenuController.OpenNewGame);
-            loadGameButton.onClick.AddListener(_mainMenuController.OpenLoadGame);
-            optionsButton.onClick.AddListener(_mainMenuController.OpenOptions);
-            exitButton.onClick.AddListener(_mainMenuController.OpenExitGame);
+            newGameButton?.onClick.AddListener(_mainMenuController.OpenNewGame);
+            loadGameButton?.onClick.AddListener(_mainMenuController.OpenLoadGame);
+            optionsButton?.onClick.AddListener(_mainMenuController.OpenOptions);
+            exitButton?.onClick.AddListener(_mainMenuController.OpenExitGame);
         }
     }
 }

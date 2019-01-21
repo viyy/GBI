@@ -100,7 +100,9 @@ namespace Geekbrains
             {
                 _audioOptionsView?.SetOptionValue(parameter.GetKey, parameter.GetValue);
             }
-            _audioOptionsView.OnDataRequestEvent -= TransmitAudioOptions;
+
+            if (_audioOptionsView != null)
+                _audioOptionsView.OnDataRequestEvent -= TransmitAudioOptions;
         }
 
         /// <summary>

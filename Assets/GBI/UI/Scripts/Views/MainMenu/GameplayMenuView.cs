@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Geekbrains
+﻿namespace Geekbrains
 {
     /// <summary>
     /// Класс, отвечающий за отображение меню настроек геймплея

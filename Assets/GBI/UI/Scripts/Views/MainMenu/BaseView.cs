@@ -49,7 +49,8 @@ namespace Geekbrains
         /// </summary>
         internal virtual void Show()
         {
-            _thisObjectCanvas.enabled = true;
+            if(_thisObjectCanvas != null)
+                _thisObjectCanvas.enabled = true;
         }
 
         /// <summary>
@@ -57,7 +58,8 @@ namespace Geekbrains
         /// </summary>
         internal virtual void Hide()
         {
-            _thisObjectCanvas.enabled = false;
+            if (_thisObjectCanvas != null)
+                _thisObjectCanvas.enabled = false;
         }
 
         /// <summary>

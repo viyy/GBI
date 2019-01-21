@@ -64,8 +64,8 @@ namespace Geekbrains
         protected override void Awake()
         {
             base.Awake();
-            _yesButtonTextField = _yesButton.GetComponentInChildren<Text>();
-            _noButtonTextField = _noButton.GetComponentInChildren<Text>();
+            _yesButtonTextField = _yesButton?.GetComponentInChildren<Text>();
+            _noButtonTextField = _noButton?.GetComponentInChildren<Text>();
         }
 
         /// <summary>
@@ -75,12 +75,17 @@ namespace Geekbrains
         {
             base.Start();
 
-            _textPanel.text = this.text;
-            _yesButtonTextField.text = yesButtonText;
-            _noButtonTextField.text = noButtonText;
+            if(_textPanel != null)
+                _textPanel.text = this.text;
 
-            _yesButton.onClick.AddListener(() => SetButtonClick(_yesButton));
-            _noButton.onClick.AddListener(() => SetButtonClick(_noButton));
+            if (_yesButton != null)
+            _yesButtonTextField.text = yesButtonText;
+
+            if (_yesButton != null)
+                _noButtonTextField.text = noButtonText;
+
+            _yesButton?.onClick.AddListener(() => SetButtonClick(_yesButton));
+            _noButton?.onClick.AddListener(() => SetButtonClick(_noButton));
         }
 
         /// <summary>
@@ -88,6 +93,7 @@ namespace Geekbrains
         /// </summary>
         private void SetButtonClick(Button button)
         {
+            if(button != null)
                 OnDialogResultEvent?.Invoke(button.Equals(_yesButton));
         } 
     }
