@@ -19,7 +19,7 @@ namespace Geekbrains
         /// Список свойств скилла
         /// </summary>
         /// <see cref="SkillFeature"/>
-        private List<SkillFeature> _features;
+        protected List<SkillFeature> _features;
 
         public SkillModel(int id)
         {
