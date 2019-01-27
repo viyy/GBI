@@ -37,9 +37,16 @@ namespace Geekbrains
             _multiplier = multiplier;
         }
 
+        /// <summary>
+        /// Метод установки базового значения фичи
+        /// </summary>
+        /// <param name="value">Базовое значение фичи</param>
         internal abstract void SetValue(float value);
 
-
+        /// <summary>
+        /// Метод получения текущего значения фичи
+        /// </summary>
+        /// <returns>Текущее значение фичи</returns>
         internal abstract float GetValue();
     }
 }

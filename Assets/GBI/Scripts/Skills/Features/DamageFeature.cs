@@ -1,12 +1,12 @@
 ﻿namespace Geekbrains
 {
     /// <summary>
-    /// Класс урона скила
+    /// Класс урона скилла
     /// </summary>
-    internal class DamageFeature : SkillFeature
+    internal sealed class DamageFeature : SkillFeature
     {
         /// <summary>
-        /// Поле, хранящее величину урона
+        /// Поле, хранящее базовое значение урона
         /// </summary>
         private float _damage;
 
@@ -21,6 +21,10 @@
             _damage = damage;
         }
 
+        /// <summary>
+        /// Метод, установки базового значения
+        /// </summary>
+        /// <param name="value"></param>
         internal override void SetValue(float value)
         {
             _damage = value;
