@@ -29,7 +29,7 @@ namespace Geekbrains
         //public float Damage;
 
         /// <summary>
-        /// Метод установки множителя урона
+        /// Метод установки множителя свойства скилла
         /// </summary>
         /// <param name="multiplier">Величина множителя</param>
         internal virtual void SetMultiplier(float multiplier)
@@ -38,13 +38,13 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод установки базового значения фичи
+        /// Метод установки базового значения свойства скилла
         /// </summary>
         /// <param name="value">Базовое значение фичи</param>
         internal abstract void SetValue(float value);
 
         /// <summary>
-        /// Метод получения текущего значения фичи
+        /// Метод получения текущего значения свойства скилла
         /// </summary>
         /// <returns>Текущее значение фичи</returns>
         internal abstract float GetValue();

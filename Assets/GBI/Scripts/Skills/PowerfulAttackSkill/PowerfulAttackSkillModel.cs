@@ -52,9 +52,9 @@ namespace Geekbrains
         }
 
         /// <summary>
-        /// Метод установки множителя для соответствующей фичи скилла
+        /// Метод установки множителя для соответствующего свойства скилла
         /// </summary>
-        /// <typeparam name="T">Тип фичи скилла</typeparam>
+        /// <typeparam name="T">Тип свойства скилла</typeparam>
         /// <param name="multiplier">Значение множителя</param>
         internal void SetMultiplier<T>(float multiplier) where T : SkillFeature
         {
@@ -71,7 +71,7 @@ namespace Geekbrains
         /// <summary>
         /// Метод установки базового значения для соответствующей фичи скилла
         /// </summary>
-        /// <typeparam name="T">Тип фичи скилла</typeparam>
+        /// <typeparam name="T">Тип свойства скилла</typeparam>
         /// <param name="multiplier">Базовое значение</param>
         internal void SetValue<T>(float value) where T : SkillFeature
         {
@@ -88,7 +88,7 @@ namespace Geekbrains
         /// <summary>
         /// Получение значения фичи
         /// </summary>
-        /// <typeparam name="T">Тип фичи скилла</typeparam>
+        /// <typeparam name="T">Тип свойства скилла</typeparam>
         /// <returns></returns>
         internal float GetValue<T>() where T : SkillFeature
         {
@@ -101,6 +101,20 @@ namespace Geekbrains
                 }
             }
             return value;
+        }
+
+        /// <summary>
+        /// Метод получения значений свойств скилла
+        /// </summary>
+        /// <returns>Коллекция значений свойств</returns>
+        internal List<float> GetFeaturesValue()
+        {
+            List<float> values = new List<float>();
+            for (int i = 0; i < _features.Count; i++)
+            {
+                    values.Add(_features[i].GetValue());
+            }
+            return values;
         }
 
         /// <summary>

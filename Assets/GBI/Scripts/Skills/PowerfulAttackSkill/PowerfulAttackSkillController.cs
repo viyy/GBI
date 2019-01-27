@@ -5,6 +5,8 @@
     /// </summary>
     internal sealed class PowerfulAttackSkillController : SkillController
     {
+        private PowerfulAttackExecutedEvent _powerfulAttackExecutedEvent = new PowerfulAttackExecutedEvent();
+
         /// <summary>
         /// Конструктор класса PowerfulAttackSkillController
         /// </summary>
@@ -49,6 +51,15 @@
         internal void SetMissProbabilityValue(float value)
         {
             (_model as PowerfulAttackSkillModel).SetValue<MissProbabilityFeature>(value);
+        }
+
+        /// <summary>
+        /// Метод применения скилла (для реализации паттерна команда)
+        /// </summary>
+        internal void Execute()
+        {
+            var values = (_model as PowerfulAttackSkillModel).GetFeaturesValue();
+            _powerfulAttackExecutedEvent.Invoke(values);
         }
     }
 }
