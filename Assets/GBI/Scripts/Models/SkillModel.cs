@@ -8,7 +8,7 @@ namespace Geekbrains
     /// <see cref="BaseModel"/> <br/>
     /// <see cref="IRegistrator{T}"/> <br/>
     /// <see cref="SkillFeature"/>
-    public class SkillModel : BaseModel, IRegistrator<SkillFeature>
+    public class SkillModel : BaseModel, IRegistrator<SkillFeature>, IEventDispatcherWithResult
     {
         /// <summary>
         /// ID скилла
@@ -25,6 +25,12 @@ namespace Geekbrains
         {
             Id        = id;
             _features = new List<SkillFeature>();
+        }
+
+        public T2 DispatchEventWithResult<T1, T2>(T1 eventArgs)
+            where T1 : BaseEvent
+        {
+            return _dispatcher.DispatchEventWithResult<T1, T2>(eventArgs);
         }
 
         public void Register(SkillFeature record)

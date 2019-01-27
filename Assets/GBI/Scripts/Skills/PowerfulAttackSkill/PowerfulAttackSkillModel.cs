@@ -30,7 +30,6 @@ namespace Geekbrains
         /// <summary>
         /// Поле, хранящее ссылку на класс события запроса данных DataRequestEvent
         /// </summary>
-        private DataRequestEvent _dataRequestEvent = new DataRequestEvent();
 
         /// <summary>
         /// Конструктор класса PowerfulAttackSkillModel
@@ -40,9 +39,7 @@ namespace Geekbrains
         {
             LoadDefault();
 
-            DispatchEvent(_dataRequestEvent);
-
-            SkillFeatures = _dataRequestEvent?.Invoke(this);
+            SkillFeatures = DispatchEventWithResult<DataRequestEvent, List<SkillFeature>>(new DataRequestEvent(this));
 
             for (int i = 0; i < SkillFeatures.Count; i++)
             {

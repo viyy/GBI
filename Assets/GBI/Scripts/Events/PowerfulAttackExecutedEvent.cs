@@ -9,17 +9,17 @@ namespace Geekbrains
     internal sealed class PowerfulAttackExecutedEvent : BaseEvent
     {
         /// <summary>
-        /// Событие применения "Мощной атаки"
+        /// Свойство, хронящее значения свойств "Мощной атаки"
         /// </summary>
-        internal event Action<List<float>> OnPowerfulAttackExecutedEvent;
+        internal List<float> FeatureValues { get; private set; }   
 
         /// <summary>
         /// Метод вызова события применения "Мощной атаки"
         /// </summary>
         /// <param name="values">Коллекция значений свойств скилла "Мощная атака"</param>
-        internal void Invoke(List<float> values)
+        internal PowerfulAttackExecutedEvent(List<float> values)
         {
-            OnPowerfulAttackExecutedEvent.Invoke(values);
+            FeatureValues = values;
         }
     }
 }

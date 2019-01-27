@@ -5,11 +5,11 @@ namespace Geekbrains
 {
     internal class DataRequestEvent : BaseEvent
     {
-        internal event Func<SkillModel, List<SkillFeature>> OnDataRequestEvent;
+        internal SkillModel Source { get; private set; }
 
-        internal List<SkillFeature> Invoke(SkillModel source)
+        internal DataRequestEvent(SkillModel source)
         {
-            return OnDataRequestEvent?.Invoke(source);
+            Source = source;
         }
     }
 }

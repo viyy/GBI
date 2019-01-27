@@ -1,4 +1,6 @@
-﻿namespace Geekbrains
+﻿using System;
+
+namespace Geekbrains
 {
     /// <summary>
     /// Базовый абстрактный класс события <br/>
@@ -7,7 +9,7 @@
     /// <seealso cref="Geekbrains.IEventDispatcher"/>
     /// <br/>
     /// <seealso cref="IEventListener{T}"/>
-    public abstract class BaseEvent
+    public abstract class BaseEvent : EventArgs
     {
         
     }

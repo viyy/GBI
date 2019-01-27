@@ -1,13 +1,13 @@
-﻿namespace Geekbrains
+﻿using System;
+
+namespace Geekbrains
 {
     /// <summary>
     /// Класс контроллера скилла "Мощная атака"
     /// </summary>
     internal sealed class PowerfulAttackSkillController : SkillController
     {
-        private PowerfulAttackExecutedEvent _powerfulAttackExecutedEvent = new PowerfulAttackExecutedEvent();
-
-        /// <summary>
+         /// <summary>
         /// Конструктор класса PowerfulAttackSkillController
         /// </summary>
         /// <param name="id">Идентификатор скилла</param>
@@ -59,7 +59,7 @@
         internal void Execute()
         {
             var values = (_model as PowerfulAttackSkillModel).GetFeaturesValue();
-            _powerfulAttackExecutedEvent.Invoke(values);
+            DispatchEvent(new PowerfulAttackExecutedEvent(values));
         }
     }
 }
