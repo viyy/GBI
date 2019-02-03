@@ -16,6 +16,8 @@ namespace Geekbrains
 
         public bool IsMissProbability { get; protected set; } = false;
 
+        public bool IsDefence { get; protected set; } = false;
+
         public int Id => _model.Id;
 
         public void Register(SkillFeature record)
