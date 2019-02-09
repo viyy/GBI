@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -66,6 +67,8 @@ namespace Geekbrains
         /// </summary>
         public CharacteristicContainerController CharacteristicContainerController { get; private set; }
 
+        public PlayerController PlayerController { get; set; }
+
         /// <summary>
         /// Метод, запускающий конструктор
         /// </summary>
@@ -98,8 +101,21 @@ namespace Geekbrains
             InventoryController       = new InventoryController(new InventoryModel());
             CharacteristicContainerController =
                 new CharacteristicContainerController(new CharacteristicContainerModel());
-            
+
+            CreatePlayer();
+
             Register(InputController);
+            Register(PlayerController);
+        }
+
+        private void CreatePlayer()
+        {
+            var model = new PlayerModel();
+            var prefab = Resources.Load<GameObject>("Player");
+            prefab.name = "Player";
+            var instance = Instantiate(prefab);
+            var view = instance.GetComponent<PlayerView>();
+            PlayerController = new PlayerController(model, view);
         }
 
         public void Update()

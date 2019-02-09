@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Geekbrains
 {
@@ -14,7 +15,13 @@ namespace Geekbrains
         /// Список команд на исполнение
         /// </summary>
         private List<InputCommand> _commands;
-        
+
+        private string _horizontalAxis = "Horizontal";
+        private string _verticalAxis = "Vertical";
+
+        private string _mouseXAxis = "Mouse X";
+        private string _mouseYAxis = "Mouse Y";
+
         public InputController(BaseModel baseModel) : base(baseModel)
         {
             _commands = new List<InputCommand>();
@@ -30,8 +37,19 @@ namespace Geekbrains
         public void OnUpdate(float deltaTime)
         {
             _commands.Clear();
-            
-            
+
+            var hAxis = Input.GetAxis(_horizontalAxis);
+            var vAxis = Input.GetAxis(_verticalAxis);
+            var move = InputCommandFactory.GetCommand<PlayerMovementCommand>();
+            move.SetHorizontalAndVerticalAxis(hAxis, vAxis);
+            _commands.Add(move);
+
+            var xAxis = Input.GetAxis(_mouseXAxis);
+            var yAxis = Input.GetAxis(_mouseYAxis);
+            var turn = InputCommandFactory.GetCommand<MouseLookCommand>();
+            turn.SetHorizontalAndVerticalAxis(xAxis, yAxis);
+            _commands.Add(turn);
+
             for ( var i = 0; i < _commands.Count; i++ ) {
                 _commands[i].Execute();
             }

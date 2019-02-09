@@ -12,6 +12,6 @@
         /// <param name="eventArgs">Параметры события</param>
         /// <typeparam name="T">Тип события, наследуемый от BaseEvent</typeparam>
         /// <seealso cref="Geekbrains.BaseEvent"/>
-        void HandleEvent<T>(T eventArgs);
+        void HandleEvent(T eventArgs);
     }
 }
