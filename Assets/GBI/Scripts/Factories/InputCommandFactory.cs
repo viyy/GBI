@@ -33,7 +33,7 @@ namespace Geekbrains
 
             _commands.TryGetValue(typeof(T), out queue);
 
-            if ( _commands?.Count > 0 ) {
+            if ( queue?.Count > 0 ) {
                 command = queue.Dequeue();
             }
 
