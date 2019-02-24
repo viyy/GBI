@@ -12,6 +12,11 @@ namespace Geekbrains
     public class Main : MonoBehaviour, IRegistrator<IUpdatable>, IRegistrator<IFixedUpdatable>, IEventDispatcher
     {
         /// <summary>
+        /// Ссылка на DI контейнер
+        /// </summary>
+        [Inject] public DIContainer Container;
+        
+        /// <summary>
         /// Singleton для основного класса
         /// </summary>
         public static Main Instance { get; private set; }
@@ -84,6 +89,10 @@ namespace Geekbrains
         private void Construct()
         {
             Instance = this;
+            
+            // ReSharper disable once ObjectCreationAsStatement
+            new DIContainer(this);
+            Container.RegisterType(this);
 
             _eventDispatcher = new EventDispatcher();
             _updatebles      = new List<IUpdatable>();
@@ -100,6 +109,7 @@ namespace Geekbrains
                 new CharacteristicContainerController(new CharacteristicContainerModel());
             
             Register(InputController);
+
         }
 
         public void Update()
