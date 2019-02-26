@@ -5,15 +5,15 @@ namespace Geekbrains
     [Flags]
     public enum SkillFlags
     {
-        None = 0,
-        Damage = 1,
-        Heal = 2,
-        Melee = 4,
-        Range = 8,
-        Aoe = 16,
-        Spell = 32,
-        Craft = 64,
-        Channel = 128,
-        Projectile = 256
+        None = 0x0,
+        Damage = 0x1,
+        Heal = 0x2,
+        Melee = 0x4,
+        Range = 0x10,
+        Aoe = 0x20,
+        Spell = 0x40,
+        Craft = 0x100,
+        Channel = 0x200,
+        Projectile = 0x400
     }
 }

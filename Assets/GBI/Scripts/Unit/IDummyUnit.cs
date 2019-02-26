@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Geekbrains.Unit
 {
-    public interface IUnit
+    public interface IDummyUnit
     {
         int Id { get; }
         
@@ -13,7 +13,12 @@ namespace Geekbrains.Unit
 
         Dictionary<ResourceTypes, int> CurrentResources { get; }
 
-        void TakeDamage(int value);
+        /// <summary>
+        /// If Unit suffers damage - call this
+        /// </summary>
+        /// <param name="value">damage w/o reduces from armor etc</param>
+        /// <returns>how much damage was taken actually</returns>
+        int TakeDamage(int value);
 
         void Heal(int value);
 
@@ -23,7 +28,9 @@ namespace Geekbrains.Unit
         
         bool IsDead { get; }
 
-        float DistanceTo(IUnit target);
+        float DistanceTo(IDummyUnit target);
         float DistanceTo(Vector3 position);
+
+        bool TryGetCharacteristic(CharacteristicTypes type, out int value);
     }
 }

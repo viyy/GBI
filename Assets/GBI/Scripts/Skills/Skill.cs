@@ -5,7 +5,7 @@ namespace Geekbrains.Skills
 {
     public class Skill
     {
-        public Skill(int id, string name, float range, Dictionary<ResourceTypes, int> cost, SkillFlags flags, List<SkillEffect> effects)
+        public Skill(int id, string name, float range, Dictionary<ResourceTypes, int> cost, SkillFlags flags, List<SkillEffectBase> effects)
         {
             Id = id;
             Name = name;
@@ -43,9 +43,9 @@ namespace Geekbrains.Skills
         /// <summary>
         /// Список эффектов, которые будут применяться к цели
         /// </summary>
-        public List<SkillEffect> Effects { get; private set; }
+        public List<SkillEffectBase> Effects { get; private set; }
 
-        public void Execute(IUnit caster, IEnumerable<IUnit> targets)
+        public void Execute(IDummyUnit caster, IEnumerable<IDummyUnit> targets)
         {
             foreach (var target in targets)
             {

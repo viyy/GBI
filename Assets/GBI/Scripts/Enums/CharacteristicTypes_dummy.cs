@@ -1,6 +1,6 @@
 namespace Geekbrains
 {
-    public interface ISkillEffectStorage
+    public enum CharacteristicTypes
     {
         
     }

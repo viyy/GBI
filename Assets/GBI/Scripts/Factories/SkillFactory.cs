@@ -16,7 +16,12 @@ namespace Geekbrains
             {
                 cost.Add((ResourceTypes)i.Key,i.Value);
             }
-            return new Skill(id, tmp.Name, tmp.Range, cost, (SkillFlags)tmp.Flags, new List<SkillEffect>());
+            var effects = new List<SkillEffectBase>();
+            foreach (var effectDto in tmp.Effects)
+            {
+                effects.Add(SkillEffectFactory.CreateSkillEffect(effectDto));
+            }
+            return new Skill(id, tmp.Name, tmp.Range, cost, (SkillFlags)tmp.Flags, effects);
         }
     }
 }
