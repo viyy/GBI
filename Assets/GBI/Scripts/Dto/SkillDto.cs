@@ -5,6 +5,10 @@ namespace Geekbrains.Skills
     public class SkillDto
     {
         public int Id { get; set; }
+        /// <summary>
+        /// List of Skill ids that required to obtain this skill
+        /// </summary>
+        public List<int> RequiredSkills { get; set; }
         
         /// <summary>
         /// Название скилла
@@ -16,6 +20,9 @@ namespace Geekbrains.Skills
         /// </summary>
         public float Range { get; set; }
         
+        public float Radius { get; set; }
+        
+        public float Cooldown { get; set; }
         /// <summary>
         /// Стоимость навыка
         /// </summary>

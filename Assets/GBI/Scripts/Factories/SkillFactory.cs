@@ -21,7 +21,7 @@ namespace Geekbrains
             {
                 effects.Add(SkillEffectFactory.CreateSkillEffect(effectDto));
             }
-            return new Skill(id, tmp.Name, tmp.Range, cost, (SkillFlags)tmp.Flags, effects);
+            return new Skill(id, tmp.Name, tmp.Range, cost, (SkillFlags)tmp.Flags, effects, tmp.Radius, tmp.Cooldown, tmp.RequiredSkills);
         }
     }
 }
