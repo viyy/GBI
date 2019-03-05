@@ -32,5 +32,9 @@ namespace Geekbrains.Unit
         float DistanceTo(Vector3 position);
 
         bool TryGetCharacteristic(CharacteristicTypes type, out int value);
+
+        bool IsEnemyTo(IDummyUnit target);
+
+        bool IsAllyTo(IDummyUnit target);
     }
 }

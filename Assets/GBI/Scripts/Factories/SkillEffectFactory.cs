@@ -18,13 +18,13 @@ namespace Geekbrains
             switch ((SkillEffectTypes)dto.EffectType)
             {
                 case SkillEffectTypes.Damage:
-                    skill = new DamageEffect(values, SkillEffectTypes.Damage, dto.BaseValue);
+                    skill = new DamageEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
                     break;
                 case SkillEffectTypes.Heal:
-                    skill = new HealEffect(values, SkillEffectTypes.Damage, dto.BaseValue);
+                    skill = new HealEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
                     break;
                 case SkillEffectTypes.Vampirism:
-                    skill = new VampirismEffect(values, SkillEffectTypes.Damage, dto.BaseValue);
+                    skill = new VampirismEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
                     break;
                 case SkillEffectTypes.Aura:
                     //TODO: Aura class

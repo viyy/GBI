@@ -6,7 +6,7 @@ namespace Geekbrains.Skills
 {
     public class HealEffect : SkillEffectBase
     {
-        public HealEffect(Dictionary<CharacteristicTypes, float> values, SkillEffectTypes effectType, float baseValue) : base(values, effectType, baseValue)
+        public HealEffect(Dictionary<CharacteristicTypes, float> values, SkillEffectTypes effectType, float baseValue, TargetModeTypes legalTargets) : base(values, effectType, baseValue, legalTargets)
         {
         }
 

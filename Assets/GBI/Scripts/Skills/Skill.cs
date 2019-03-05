@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Geekbrains.Unit;
 
@@ -16,6 +17,11 @@ namespace Geekbrains.Skills
             Radius = radius;
             Cooldown = cooldown;
             RequiredSkills = requiredSkills;
+            LegalTargets = TargetModeTypes.None;
+            foreach (var effect in Effects)
+            {
+                LegalTargets |= effect.LegalTarget;
+            }
         }
 
         /// <summary>
@@ -64,7 +70,8 @@ namespace Geekbrains.Skills
         /// Флаги, указывающие на тип и особенности скилла
         /// </summary>
         public SkillFlags Flags { get; private set; }
-        
+
+        public TargetModeTypes LegalTargets { get; private set; }
         /// <summary>
         /// Список эффектов, которые будут применяться к цели
         /// </summary>
@@ -77,8 +84,16 @@ namespace Geekbrains.Skills
             {
                 foreach (var effect in Effects)
                 {
-                    effect.Execute(caster, target);
+                    if (((effect.LegalTarget & TargetModeTypes.Enemy) > 0) && target.IsEnemyTo(caster) ||
+                        ((effect.LegalTarget & TargetModeTypes.Ally) > 0 && target.IsAllyTo(caster)))
+                        effect.Execute(caster, target);
                 }
+            }
+
+            foreach (var effect in Effects)
+            {
+                if ((effect.LegalTarget & TargetModeTypes.Self)>0)
+                    effect.Execute(caster, caster);
             }
 
             CurrentCooldown = Cooldown;
