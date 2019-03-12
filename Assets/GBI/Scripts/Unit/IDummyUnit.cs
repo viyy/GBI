@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Geekbrains.Skills.Auras;
 using UnityEngine;
 
 namespace Geekbrains.Unit
@@ -22,7 +23,8 @@ namespace Geekbrains.Unit
 
         void Heal(int value);
 
-        void ApplyAura(int id);
+        void ApplyAura(int id, IDummyUnit caster);
+        void ApplyAura(AuraBase aura);
 
         bool HasAura(int id);
         
@@ -36,5 +38,9 @@ namespace Geekbrains.Unit
         bool IsEnemyTo(IDummyUnit target);
 
         bool IsAllyTo(IDummyUnit target);
+
+        void AddToCharacteristic(CharacteristicTypes type, int value);
+
+        void AddCharacteristicPercent(CharacteristicTypes type, float value);
     }
 }

@@ -11,8 +11,13 @@ namespace Geekbrains
         /// </summary>
         HoT = 2, 
         /// <summary>
-        /// Affects stats
+        /// Both Affects stats, but different layers
         /// </summary>
-        Buff = 3
+        FlatBuff = 3,
+        PercentBuff = 4,
+        /// <summary>
+        /// For inner purposes
+        /// </summary>
+        Other = 5
     }
 }

@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using Geekbrains.Skills;
 using Geekbrains.Storages;
+using Geekbrains.Unit;
 
 namespace Geekbrains
 {
     public static class SkillEffectFactory
     {
-        public static SkillEffectBase CreateSkillEffect(SkillEffectDto dto)
+        public static SkillEffectBase CreateSkillEffect(SkillEffectDto dto, IDummyUnit caster)
         {
             SkillEffectBase skill = null;
             var values = new Dictionary<CharacteristicTypes, float>();
@@ -27,7 +28,8 @@ namespace Geekbrains
                     skill = new VampirismEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
                     break;
                 case SkillEffectTypes.Aura:
-                    //TODO: Aura class
+                    var a = AuraFactory.GetAura((int) dto.BaseValue, caster);
+                    
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

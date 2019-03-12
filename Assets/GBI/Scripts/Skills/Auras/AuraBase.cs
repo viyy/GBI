@@ -5,15 +5,20 @@ namespace Geekbrains.Skills.Auras
 {
     public abstract class AuraBase : IUpdatable
     {
+        public int Id { get; protected set; }
         public AuraTypes Type { get; protected set; }
         public string Name { get; protected set; }
         public bool IsVisible { get; protected set; }
         public bool IsPermanent { get; protected set; }
         public float Duration { get; protected set; }
+        
+        public string Icon { get; protected set; }
+        
+        public IDummyUnit Caster { get; protected set; }
 
-        protected Dictionary<string, float> Values;
+        protected Dictionary<CharacteristicTypes, float> Values;
 
-        protected AuraBase(AuraTypes type, string name, bool isVisible, bool isPermanent, float duration, Dictionary<string, float> values)
+        protected AuraBase(int id, AuraTypes type, string name, bool isVisible, bool isPermanent, float duration, Dictionary<CharacteristicTypes, float> values, string icon)
         {
             Type = type;
             Name = name;
@@ -21,14 +26,22 @@ namespace Geekbrains.Skills.Auras
             IsPermanent = isPermanent;
             Duration = duration;
             Values = values;
+            Icon = icon;
+            Id = id;
         }
 
-        //TODO: Icon?
+        public void SetCaster(IDummyUnit caster)
+        {
+            Caster = caster;
+        }
+
         public virtual void OnUpdate(float deltaTime)
         {
             Duration -= deltaTime;
         }
 
         public abstract void Execute(IDummyUnit target);
+
+        public abstract void Remove(IDummyUnit target);
     }
 }
