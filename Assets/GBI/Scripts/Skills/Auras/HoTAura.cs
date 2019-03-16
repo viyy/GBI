@@ -6,7 +6,12 @@ namespace Geekbrains.Skills.Auras
 {
     public class HoTAura : AuraBase
     {
-        
+        public HoTAura(int id, AuraTypes type, string name, bool isVisible, bool isPermanent, float duration,
+            Dictionary<CharacteristicTypes, float> values, string icon) : base(id, type, name, isVisible, isPermanent,
+            duration, values, icon)
+        {
+        }
+
         public override void Execute(IDummyUnit target)
         {
             var dmg = 0f;
@@ -22,10 +27,6 @@ namespace Geekbrains.Skills.Auras
         public override void Remove(IDummyUnit target)
         {
             //nothing to do here
-        }
-
-        public HoTAura(int id, AuraTypes type, string name, bool isVisible, bool isPermanent, float duration, Dictionary<CharacteristicTypes, float> values, string icon) : base(id, type, name, isVisible, isPermanent, duration, values, icon)
-        {
         }
     }
 }

@@ -4,17 +4,41 @@ using Geekbrains.Unit;
 
 namespace Geekbrains
 {
-    public class SkillController: BaseController<SkillContainerModel>, IUpdatable, IRegistrator<Skill>
+    public class SkillController : BaseController<SkillContainerModel>, IUpdatable, IRegistrator<Skill>
     {
-        private ITargetManager _tm;
-        private IAnimationManager _am;
-        public SkillController(IDummyUnit caster, ITargetManager tm, IAnimationManager am)
-        {    
+        private readonly ISkillProjectileManager _am;
+
+        private readonly IDummyUnit _caster;
+
+        private List<IDummyUnit> _targets;
+        private readonly ITargetManager _tm;
+
+        public SkillController(IDummyUnit caster, ITargetManager tm, ISkillProjectileManager am)
+        {
             _caster = caster;
             _targets = new List<IDummyUnit>();
             _tm = tm;
             _am = am;
         }
+
+        public bool IsCasting { get; private set; }
+
+        public float CurrentCastTime { get; private set; }
+
+        public float CastTime { get; private set; }
+
+        public Skill CurrentSkill { get; private set; }
+
+        public void Register(Skill record)
+        {
+            _model.Register(record);
+        }
+
+        public void Unregister(Skill record)
+        {
+            _model.Unregister(record);
+        }
+
         public void OnUpdate(float deltaTime)
         {
             _model.OnUpdate(deltaTime);
@@ -29,34 +53,15 @@ namespace Geekbrains
             _targets = new List<IDummyUnit>();
         }
 
-        public void Register(Skill record)
+        public Skill GetSkill(int id)
         {
-            _model.Register(record);
+            return _model[id];
         }
-
-        public void Unregister(Skill record)
-        {
-            _model.Unregister(record);
-        }
-        
-        public bool IsCasting { get; private set; }
-        
-        public float CurrentCastTime { get; private set; }
-        
-        public float CastTime { get; private set; }
-
-        public Skill GetSkill(int id) => _model[id];
-        
-        public Skill CurrentSkill { get; private set; }
-
-        private IDummyUnit _caster;
-
-        private List<IDummyUnit> _targets;
 
         public async void Cast(int id)
         {
-            var tmp = GetSkill(id);    
-            if (tmp==null) return;
+            var tmp = GetSkill(id);
+            if (tmp == null) return;
             CurrentSkill = tmp;
             _targets = await _tm.GetTargets(_caster, CurrentSkill);
             IsCasting = true;
@@ -75,7 +80,9 @@ namespace Geekbrains
 
         public void Execute()
         {
-            
+            _targets = _tm.VerifyTargets(_caster, CurrentSkill, _targets);
+            //Skill.Execute вызывется на попадании конкретным снарядом.
+            _am.LaunchSkill(CurrentSkill, _caster, _targets);
         }
     }
 }

@@ -7,7 +7,9 @@ namespace Geekbrains.Skills
     public class AuraEffect : SkillEffectBase
     {
         private readonly AuraBase _aura;
-        public AuraEffect(Dictionary<CharacteristicTypes, float> values, SkillEffectTypes effectType, float baseValue, TargetModeTypes legalTarget, AuraBase aura) : base(values, effectType, baseValue, legalTarget)
+
+        public AuraEffect(Dictionary<CharacteristicTypes, float> values, SkillEffectTypes effectType, float baseValue,
+            TargetModeTypes legalTarget, AuraBase aura) : base(values, effectType, baseValue, legalTarget)
         {
             _aura = aura;
         }

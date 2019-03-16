@@ -6,7 +6,8 @@ namespace Geekbrains.Skills
 {
     public class VampirismEffect : SkillEffectBase
     {
-        public VampirismEffect(Dictionary<CharacteristicTypes, float> values, SkillEffectTypes effectType, float baseValue, TargetModeTypes legalTargets) : base(values, effectType, baseValue, legalTargets)
+        public VampirismEffect(Dictionary<CharacteristicTypes, float> values, SkillEffectTypes effectType,
+            float baseValue, TargetModeTypes legalTargets) : base(values, effectType, baseValue, legalTargets)
         {
         }
 
@@ -15,9 +16,10 @@ namespace Geekbrains.Skills
             var dmg = BaseValue;
             foreach (var f in Values)
             {
-                if( !caster.TryGetCharacteristic(f.Key, out var tmp)) continue;
+                if (!caster.TryGetCharacteristic(f.Key, out var tmp)) continue;
                 dmg += tmp * f.Value;
             }
+
             var d = target.TakeDamage(Mathf.FloorToInt(dmg));
             caster.Heal(d);
         }
