@@ -37,5 +37,7 @@ namespace Geekbrains.Skills
         /// Список эффектов, которые будут применяться к цели
         /// </summary>
         public List<SkillEffectDto> Effects { get; set; }
+        
+        public float CastTime { get; set; }
     }
 }

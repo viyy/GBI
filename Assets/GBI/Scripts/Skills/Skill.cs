@@ -4,9 +4,9 @@ using Geekbrains.Unit;
 
 namespace Geekbrains.Skills
 {
-    public class Skill : IUpdatable
+    public class Skill : BaseModel, IUpdatable
     {
-        public Skill(int id, string name, float range, Dictionary<ResourceTypes, int> cost, SkillFlags flags, List<SkillEffectBase> effects, float radius, float cooldown, List<int> requiredSkills)
+        public Skill(int id, string name, float range, Dictionary<ResourceTypes, int> cost, SkillFlags flags, List<SkillEffectBase> effects, float radius, float cooldown, List<int> requiredSkills, float castTime)
         {
             Id = id;
             Name = name;
@@ -17,6 +17,7 @@ namespace Geekbrains.Skills
             Radius = radius;
             Cooldown = cooldown;
             RequiredSkills = requiredSkills;
+            CastTime = castTime;
             LegalTargets = TargetModeTypes.None;
             foreach (var effect in Effects)
             {
@@ -60,7 +61,14 @@ namespace Geekbrains.Skills
         /// Max cooldown
         /// </summary>
         public float Cooldown { get; private set; }
+
+        /// <summary>
+        /// Time, required to use this skill
+        /// </summary>
+        public float CastTime { get; private set; }
         
+        //TODO: Speed of particles?
+
         /// <summary>
         /// Стоимость навыка
         /// </summary>
@@ -97,6 +105,21 @@ namespace Geekbrains.Skills
             }
 
             CurrentCooldown = Cooldown;
+        }
+
+        public bool CanBeCasted(IDummyUnit caster, IDummyUnit target)
+        {
+            if (!caster.IsAbleToUseSkills) return false;
+            foreach (var i in Cost)
+            {
+                if (!caster.CurrentResources.ContainsKey(i.Key)) return false;
+                {
+                    if (caster.CurrentResources[i.Key] < i.Value) return false;
+                }
+            }
+            if (target == null) return true;
+            if (caster.DistanceTo(target) > Range) return false;
+            return (caster.GetTargetModeTypesFor(target) & LegalTargets) != 0;
         }
 
         public void OnUpdate(float deltaTime)

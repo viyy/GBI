@@ -29,6 +29,8 @@ namespace Geekbrains.Unit
         bool HasAura(int id);
         
         bool IsDead { get; }
+        
+        bool IsAbleToUseSkills { get; }
 
         float DistanceTo(IDummyUnit target);
         float DistanceTo(Vector3 position);
@@ -42,5 +44,12 @@ namespace Geekbrains.Unit
         void AddToCharacteristic(CharacteristicTypes type, int value);
 
         void AddCharacteristicPercent(CharacteristicTypes type, float value);
+
+        /// <summary>
+        /// Get alignment of target to this unit
+        /// </summary>
+        /// <param name="target">target unit</param>
+        /// <returns>Flags of alignment</returns>
+        TargetModeTypes GetTargetModeTypesFor(IDummyUnit target);
     }
 }

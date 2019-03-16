@@ -13,7 +13,6 @@ namespace Geekbrains
         Aoe = 0x10,
         Spell = 0x20,
         Craft = 0x40,
-        Channel = 0x80,
-        Projectile = 0x100
+        Projectile = 0x80
     }
 }
