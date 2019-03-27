@@ -4,9 +4,9 @@ namespace Geekbrains.Skills
 {
     public class SkillEffectDto
     {
-        public int TargetType { get; set; }
-        public int EffectType { get; set; }
+        public TargetModeTypes TargetType { get; set; }
+        public SkillEffectTypes EffectType { get; set; }
         public float BaseValue { get; set; }
-        public Dictionary<int, float> Values { get; set; }
+        public Dictionary<CharacteristicTypes, float> Values { get; set; }
     }
 }

@@ -11,25 +11,20 @@ namespace Geekbrains
         public static SkillEffectBase CreateSkillEffect(SkillEffectDto dto, IDummyUnit caster)
         {
             SkillEffectBase skill = null;
-            var values = new Dictionary<CharacteristicTypes, float>();
-            foreach (var f in dto.Values)
-            {
-                values.Add((CharacteristicTypes)f.Key, f.Value);
-            }
-            switch ((SkillEffectTypes)dto.EffectType)
+            switch (dto.EffectType)
             {
                 case SkillEffectTypes.Damage:
-                    skill = new DamageEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
+                    skill = new DamageEffect(dto.Values, SkillEffectTypes.Damage, dto.BaseValue,dto.TargetType);
                     break;
                 case SkillEffectTypes.Heal:
-                    skill = new HealEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
+                    skill = new HealEffect(dto.Values, SkillEffectTypes.Damage, dto.BaseValue,dto.TargetType);
                     break;
                 case SkillEffectTypes.Vampirism:
-                    skill = new VampirismEffect(values, SkillEffectTypes.Damage, dto.BaseValue,(TargetModeTypes)dto.TargetType);
+                    skill = new VampirismEffect(dto.Values, SkillEffectTypes.Damage, dto.BaseValue,dto.TargetType);
                     break;
                 case SkillEffectTypes.Aura:
                     var a = AuraFactory.GetAura((int) dto.BaseValue, caster);
-                    
+                    skill = new AuraEffect(dto.Values, SkillEffectTypes.Aura, dto.BaseValue, dto.TargetType, a);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
