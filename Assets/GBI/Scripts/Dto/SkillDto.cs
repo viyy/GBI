@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GBI.Utility;
 
 namespace Geekbrains.Skills
 {
@@ -28,7 +29,7 @@ namespace Geekbrains.Skills
         /// <summary>
         ///     Стоимость навыка
         /// </summary>
-        public Dictionary<ResourceTypes, int> Cost { get; set; }
+        public SerializableDictionary<ResourceTypes, int> Cost { get; set; }
 
         /// <summary>
         ///     Флаги, указывающие на тип и особенности скилла

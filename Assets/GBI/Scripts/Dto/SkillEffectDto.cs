@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GBI.Utility;
 
 namespace Geekbrains.Skills
 {
@@ -7,6 +8,6 @@ namespace Geekbrains.Skills
         public TargetModeTypes TargetType { get; set; }
         public SkillEffectTypes EffectType { get; set; }
         public float BaseValue { get; set; }
-        public Dictionary<CharacteristicTypes, float> Values { get; set; }
+        public SerializableDictionary<CharacteristicTypes, float> Values { get; set; }
     }
 }

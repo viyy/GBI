@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GBI.Utility;
 
 namespace Geekbrains.Skills
 {
@@ -11,6 +12,6 @@ namespace Geekbrains.Skills
         public bool IsPermanent { get; set; }
         public float Duration { get; set; }
         public string Icon { get; set; }
-        public Dictionary<CharacteristicTypes, float> Values { get; set; }
+        public SerializableDictionary<CharacteristicTypes, float> Values { get; set; }
     }
 }

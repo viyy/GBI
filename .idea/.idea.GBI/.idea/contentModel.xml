@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\bewreks\.Rider2018.3\config\consoles\db" t="IncludeRecursive" />
-    <e p="C:\Users\bewreks\.Rider2018.3\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\bewreks\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\bewreks\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_GBI.-805571607.00" t="ExcludeRecursive" />
-    <e p="E:\Work\Unity\GBI" t="IncludeRecursive">
+    <e p="C:\Users\viyy2\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\viyy2\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_GBI.-724170803.00" t="ExcludeRecursive" />
+    <e p="D:\Dev\GBI" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="Editor" t="Include">
+          <e p="SkillEditor" t="Include">
+            <e p="SkillEditor.cs" t="Include" />
+          </e>
+        </e>
         <e p="GBI" t="Include">
           <e p="Materials" t="Include">
             <e p="InitFolder.txt" t="Include" />
@@ -27,27 +31,45 @@
               <e p="PauseController.cs" t="Include" />
               <e p="SettingsController.cs" t="Include" />
               <e p="SkillController.cs" t="Include" />
-              <e p="SkillsContainerController.cs" t="Include" />
+            </e>
+            <e p="Dto" t="Include">
+              <e p="AuraDto.cs" t="Include" />
+              <e p="SkillDTO.cs" t="Include" />
+              <e p="SkillEffectDto.cs" t="Include" />
             </e>
             <e p="Enums" t="Include">
+              <e p="AuraTypes.cs" t="Include" />
+              <e p="CharacteristicTypes_dummy.cs" t="Include" />
               <e p="GameLanguageEnum.cs" t="Include" />
+              <e p="ResourceTypes.cs" t="Include" />
+              <e p="SkillEffectTypes.cs" t="Include" />
+              <e p="SkillFlags.cs" t="Include" />
+              <e p="TargetModeTypes.cs" t="Include" />
             </e>
             <e p="Events" t="Include">
               <e p="BaseEvent.cs" t="Include" />
               <e p="EventDispatcher.cs" t="Include" />
             </e>
             <e p="Factories" t="Include">
+              <e p="AuraFactory.cs" t="Include" />
               <e p="InputCommandFactory.cs" t="Include" />
+              <e p="SkillEffectFactory.cs" t="Include" />
+              <e p="SkillFactory.cs" t="Include" />
             </e>
             <e p="Features" t="Include">
               <e p="CharacteristicFeature.cs" t="Include" />
               <e p="SkillFeature.cs" t="Include" />
             </e>
             <e p="Interfaces" t="Include">
+              <e p="IAuraStorage.cs" t="Include" />
               <e p="IEventDispatcher.cs" t="Include" />
               <e p="IEventListener.cs" t="Include" />
               <e p="IFixedUpdatable.cs" t="Include" />
               <e p="IRegistrator.cs" t="Include" />
+              <e p="ISkillProjectileManager.cs" t="Include" />
+              <e p="ISkillSaver.cs" t="Include" />
+              <e p="ISkillStorage.cs" t="Include" />
+              <e p="ITargetManager.cs" t="Include" />
               <e p="IUpdatable.cs" t="Include" />
             </e>
             <e p="Logger" t="Include">
@@ -63,8 +85,75 @@
               <e p="LocaleModel.cs" t="Include" />
               <e p="PauseModel.cs" t="Include" />
               <e p="SettingsModel.cs" t="Include" />
-              <e p="SkillModel.cs" t="Include" />
-              <e p="SkillsContainerModel.cs" t="Include" />
+              <e p="SkillContainerModel.cs" t="Include" />
+            </e>
+            <e p="Skills" t="Include">
+              <e p="Auras" t="Include">
+                <e p="AuraBase.cs" t="Include" />
+                <e p="DoTAura.cs" t="Include" />
+                <e p="DummyAura.cs" t="Include" />
+                <e p="FlatBuffAura.cs" t="Include" />
+                <e p="HoTAura.cs" t="Include" />
+                <e p="PercentBuffAura.cs" t="Include" />
+              </e>
+              <e p="Features" t="Include">
+                <e p="MeleeContrattack" t="Include">
+                  <e p="MCDamageFeatureLevel1.cs" t="Include" />
+                  <e p="MCDamageFeatureLevel2.cs" t="Include" />
+                  <e p="MCDamageFeatureLevel3.cs" t="Include" />
+                  <e p="MCDamageFeatureLevel4.cs" t="Include" />
+                  <e p="MCFatigueFeatureLevel1.cs" t="Include" />
+                  <e p="MCFatigueFeatureLevel2.cs" t="Include" />
+                  <e p="MCFatigueFeatureLevel3.cs" t="Include" />
+                  <e p="MCFatigueFeatureLevel4.cs" t="Include" />
+                </e>
+                <e p="MeleeDefenceSkill" t="Include">
+                  <e p="MDDefenceFeatureLevel1.cs" t="Include" />
+                  <e p="MDDefenceFeatureLevel2.cs" t="Include" />
+                  <e p="MDDefenceFeatureLevel3.cs" t="Include" />
+                  <e p="MDDefenceFeatureLevel4.cs" t="Include" />
+                  <e p="MDFatigueFeatureLevel1.cs" t="Include" />
+                  <e p="MDFatigueFeatureLevel2.cs" t="Include" />
+                  <e p="MDFatigueFeatureLevel3.cs" t="Include" />
+                  <e p="MDFatigueFeatureLevel4.cs" t="Include" />
+                </e>
+                <e p="PowerfulAttackSkill" t="Include">
+                  <e p="PADamageFeatureLevel1.cs" t="Include" />
+                  <e p="PADamageFeatureLevel2.cs" t="Include" />
+                  <e p="PADamageFeatureLevel3.cs" t="Include" />
+                  <e p="PADamageFeatureLevel4.cs" t="Include" />
+                  <e p="PAFatigueFeatureLevel1.cs" t="Include" />
+                  <e p="PAFatigueFeatureLevel2.cs" t="Include" />
+                  <e p="PAFatigueFeatureLevel3.cs" t="Include" />
+                  <e p="PAFatigueFeatureLevel4.cs" t="Include" />
+                  <e p="PAMissProbabilityFeatureLevel1.cs" t="Include" />
+                  <e p="PAMissProbabilityFeatureLevel2.cs" t="Include" />
+                  <e p="PAMissProbabilityFeatureLevel3.cs" t="Include" />
+                  <e p="PAMissProbabilityFeatureLevel4.cs" t="Include" />
+                </e>
+              </e>
+              <e p="Interfaces" t="Include">
+                <e p="IDamageFeature.cs" t="Include" />
+                <e p="IDefenceFeature.cs" t="Include" />
+                <e p="IFatigueFeature.cs" t="Include" />
+                <e p="IFeature.cs" t="Include" />
+                <e p="IMissProbability.cs" t="Include" />
+              </e>
+              <e p="Skill.cs" t="Include" />
+              <e p="SkillEffects" t="Include">
+                <e p="AuraEffect.cs" t="Include" />
+                <e p="DamageEffect.cs" t="Include" />
+                <e p="HealEffect.cs" t="Include" />
+                <e p="SkillEffectBase.cs" t="Include" />
+                <e p="VampirismEffect.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Storages" t="Include">
+              <e p="XmlAuraStorage.cs" t="Include" />
+              <e p="XmlSkillStorage.cs" t="Include" />
+            </e>
+            <e p="Unit" t="Include">
+              <e p="IDummyUnit.cs" t="Include" />
             </e>
             <e p="Views" t="Include">
               <e p="BaseView.cs" t="Include" />
@@ -139,6 +228,9 @@
                 </e>
               </e>
             </e>
+          </e>
+          <e p="Utility" t="Include">
+            <e p="SerializableDictionary.cs" t="Include" />
           </e>
         </e>
       </e>

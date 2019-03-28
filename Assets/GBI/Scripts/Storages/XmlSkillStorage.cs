@@ -46,7 +46,9 @@ namespace Geekbrains.Storages
                 }
             }
             tmp.Sort();
-            return tmp.Last();
+            return tmp.Last()+1;
         }
     }
+    
+   
 }

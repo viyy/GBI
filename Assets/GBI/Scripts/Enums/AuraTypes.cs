@@ -1,23 +1,27 @@
+using System;
+using System.Runtime.Serialization;
+
 namespace Geekbrains
 {
+    [Serializable]
     public enum AuraTypes
     {
         /// <summary>
         /// Deals damage over time
         /// </summary>
-        DoT = 1, 
+        [EnumMember] DoT = 1, 
         /// <summary>
         /// Heals over time
         /// </summary>
-        HoT = 2, 
+        [EnumMember] HoT = 2, 
         /// <summary>
         /// Both Affects stats, but different layers
         /// </summary>
-        FlatBuff = 3,
-        PercentBuff = 4,
+        [EnumMember] FlatBuff = 3,
+        [EnumMember] PercentBuff = 4,
         /// <summary>
         /// For inner purposes
         /// </summary>
-        Other = 5
+        [EnumMember] Other = 5
     }
 }
