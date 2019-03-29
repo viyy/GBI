@@ -8,6 +8,6 @@ namespace Geekbrains.Skills
         public TargetModeTypes TargetType { get; set; }
         public SkillEffectTypes EffectType { get; set; }
         public float BaseValue { get; set; }
-        public SerializableDictionary<CharacteristicTypes, float> Values { get; set; }
+        public SerializableDictionary<CharacteristicTypes, float> Values { get; set; } = new SerializableDictionary<CharacteristicTypes, float>();
     }
 }

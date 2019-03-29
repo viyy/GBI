@@ -13,6 +13,11 @@
           </e>
         </e>
         <e p="GBI" t="Include">
+          <e p="Data" t="Include">
+            <e p="Skills" t="Include">
+              <e p="1.xml" t="Include" />
+            </e>
+          </e>
           <e p="Materials" t="Include">
             <e p="InitFolder.txt" t="Include" />
           </e>

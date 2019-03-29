@@ -29,7 +29,7 @@ namespace Geekbrains.Skills
         /// <summary>
         ///     Стоимость навыка
         /// </summary>
-        public SerializableDictionary<ResourceTypes, int> Cost { get; set; }
+        public SerializableDictionary<ResourceTypes, int> Cost { get; set; } = new SerializableDictionary<ResourceTypes, int>();
 
         /// <summary>
         ///     Флаги, указывающие на тип и особенности скилла

@@ -24,7 +24,7 @@ public class SkillEditor : EditorWindow
     private static int _newId = 1;
     private int _ri = -1;
     private static ISkillSaver _saver = new XmlSkillStorage();
-    private SkillEffectDto _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None, Values = new SerializableDictionary<CharacteristicTypes, float>()};
+    private SkillEffectDto _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None};
 
     [MenuItem("GBI/Skill Editor")]
     public static void ShowWindow()
@@ -68,7 +68,7 @@ public class SkillEditor : EditorWindow
                 {ResourceTypes.Rage, 0}
             }
         };
-        _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None, Values = new SerializableDictionary<CharacteristicTypes, float>()};
+        _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None};
         _newId = _saver.GetNewId();
     }
 
@@ -83,7 +83,7 @@ public class SkillEditor : EditorWindow
                 {ResourceTypes.Rage, 0}
             }
         };
-        _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None, Values = new SerializableDictionary<CharacteristicTypes, float>()};
+        _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None};
         _newId = _saver.GetNewId();
     }
 
