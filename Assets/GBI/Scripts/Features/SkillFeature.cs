@@ -4,23 +4,23 @@ namespace Geekbrains
     /// Класс свойств скилла <br/>
     /// Каждый объект характеристики добавляет скиллу особые свойства 
     /// </summary>
-    public class SkillFeature
+    public abstract class SkillFeature
     {
         /// <summary>
         /// Скилл работает по области
         /// </summary>
-        public bool IsAOE;
+        //public bool IsAOE;
 
         /// <summary>
         /// Скилл - аура <br/>
         /// Можно объединить с IsAOE
         /// </summary>
-        public bool IsAura;
+        //public bool IsAura;
 
         /// <summary>
         /// Сколько урона наносит эта часть скилла <br/>
         /// Негативное значение запускает процесс исцеления
         /// </summary>
-        public float Damage;
+        //public float Damage;
     }
 }

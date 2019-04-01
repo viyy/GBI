@@ -39,7 +39,7 @@ namespace Geekbrains
         /// <summary>
         /// Основная точка доступа к контроллеру скиллов
         /// </summary>
-        public SkillsContainerController SkillsContainerController { get; private set; }
+        //public SkillsContainerController SkillsContainerController { get; private set; }
 
         /// <summary>
         /// Основная точка доступа к контроллеру паузы
@@ -99,7 +99,7 @@ namespace Geekbrains
             _fixedUpdatebles = new List<IFixedUpdatable>();
 
             // Можно перенести в singleton c инициализацией с задержкой
-            SkillsContainerController = new SkillsContainerController(new SkillsContainerModel());
+            //SkillsContainerController = new SkillsContainerController(new SkillsContainerModel());
             PauseController           = new PauseController(new PauseModel());
             LocaleController          = new LocaleController(new LocaleModel());
             InputController           = new InputController(new BaseModel());

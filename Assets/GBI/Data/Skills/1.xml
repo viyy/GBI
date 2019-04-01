@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<SkillDto xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>1</Id>
+  <RequiredSkills />
+  <Name>Fire Bolt</Name>
+  <Range>120</Range>
+  <Radius>0</Radius>
+  <Cooldown>10</Cooldown>
+  <Cost>
+    <item>
+      <key>
+        <ResourceTypes>Mana</ResourceTypes>
+      </key>
+      <value>
+        <int>1</int>
+      </value>
+    </item>
+  </Cost>
+  <Flags>Damage Range Spell Projectile</Flags>
+  <Effects>
+    <SkillEffectDto>
+      <TargetType>Enemy</TargetType>
+      <EffectType>Damage</EffectType>
+      <BaseValue>0</BaseValue>
+      <Values />
+    </SkillEffectDto>
+  </Effects>
+  <CastTime>1.5</CastTime>
+  <Description>1d10 Cantrip</Description>
+</SkillDto>

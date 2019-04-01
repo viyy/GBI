@@ -10,7 +10,7 @@ namespace Geekbrains
         /// <summary>
         /// Объект диспатчера
         /// </summary>
-        private readonly EventDispatcher _dispatcher = new EventDispatcher();
+        protected readonly EventDispatcher _dispatcher = new EventDispatcher();
         
         public void DispatchEvent<T>(T eventArgs)
             where T : BaseEvent
