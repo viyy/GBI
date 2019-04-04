@@ -11,20 +11,24 @@ namespace DefaultNamespace
         
         public string Description { get; private set; }
 
-        private List<QuestTask> _tasks = new List<QuestTask>();
-        
+        public List<QuestTask> Tasks { get; } = new List<QuestTask>();
+
         public QuestReward Reward { get; private set; }
+
+        public bool IsTracked { get; set; } = false;
+        public int ZoneId { get; private set; }
         
         public List<QuestMarker> MapMarkers { get; private set; } = new List<QuestMarker>();
 
         public void Register(QuestTask record)
         {
-            _tasks.Add(record);
+            Tasks.Add(record);
         }
 
         public void Unregister(QuestTask record)
         {
-            _tasks.Remove(record);
+            Tasks.Remove(record);
         }
+        
     }
 }

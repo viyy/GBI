@@ -20,7 +20,7 @@ namespace Geekbrains.Skills
                 dmg += tmp * f.Value;
             }
 
-            target.Heal(Mathf.FloorToInt(dmg));
+            target.Heal(Mathf.FloorToInt(dmg), caster);
         }
     }
 }

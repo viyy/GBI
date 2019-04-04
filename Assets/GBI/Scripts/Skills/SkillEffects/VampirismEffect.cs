@@ -20,8 +20,8 @@ namespace Geekbrains.Skills
                 dmg += tmp * f.Value;
             }
 
-            var d = target.TakeDamage(Mathf.FloorToInt(dmg));
-            caster.Heal(d);
+            var d = target.TakeDamage(Mathf.FloorToInt(dmg), caster);
+            caster.Heal(d, caster);
         }
     }
 }

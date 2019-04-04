@@ -101,6 +101,11 @@ namespace Geekbrains.Skills
             Cooldown -= deltaTime;
         }
 
+        /// <summary>
+        /// Применяет эффекты на цели
+        /// </summary>
+        /// <param name="caster">Юнит - источник умения</param>
+        /// <param name="targets">Цели</param>
         public void Execute(IDummyUnit caster, IEnumerable<IDummyUnit> targets)
         {
             if (Cooldown > 0) return;
@@ -116,7 +121,12 @@ namespace Geekbrains.Skills
 
             CurrentCooldown = Cooldown;
         }
-
+        /// <summary>
+        /// Проверяет возможность применения заклинания
+        /// </summary>
+        /// <param name="caster">Юнит-источник умения</param>
+        /// <param name="target">цели, на которые проверяем возможность</param>
+        /// <returns></returns>
         public bool CanBeCasted(IDummyUnit caster, IDummyUnit target)
         {
             if (!caster.IsAbleToUseSkills) return false;

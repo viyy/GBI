@@ -41,8 +41,14 @@ namespace Geekbrains.Skills
         /// </summary>
         public List<SkillEffectDto> Effects { get; set; } = new List<SkillEffectDto>();
 
+        /// <summary>
+        /// Время подготовки умения
+        /// </summary>
         public float CastTime { get; set; }
 
+        /// <summary>
+        /// Описание
+        /// </summary>
         public string Description { get; set; }
     }
 }

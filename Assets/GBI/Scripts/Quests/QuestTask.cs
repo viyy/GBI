@@ -11,5 +11,7 @@ namespace DefaultNamespace
         public int CurrentAmount { get; private set; }
 
         public bool IsCompleted => CurrentAmount < NeededAmount;
+
+        public void AddAmount(int amount) => CurrentAmount += amount;
     }
 }
