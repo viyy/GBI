@@ -13,6 +13,14 @@ public class testCharecter : MonoBehaviour
 
     void Update()
     {
-        _characterController.Move(new Vector3(Input.GetAxis("Vertical"),0,-Input.GetAxis("Horizontal")) * speed * Time.deltaTime);
+        _characterController.Move(new Vector3(-Input.GetAxis("Vertical"),0,Input.GetAxis("Horizontal")) * speed * Time.deltaTime);
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.name == "Treasure(Clone)")
+        {
+            Destroy(hit.gameObject);
+        }
     }
 }
