@@ -2,7 +2,7 @@ using DefaultNamespace;
 
 namespace Geekbrains.Skills
 {
-    public class QuestProgressDto
+    public class TaskProgressDto
     {
         public QuestTaskTypes Type { get; set; }
         public int TargetId { get; set; }

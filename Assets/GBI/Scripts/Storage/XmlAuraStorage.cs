@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using Geekbrains;
 using Geekbrains.Skills;
 
-namespace Geekbrains.Storages
+namespace GBI.Scripts.Storage
 {
     public class XmlAuraStorage : IAuraStorage
     {

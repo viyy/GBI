@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using GBI.Scripts.Storage;
 using Geekbrains.Skills;
-using Geekbrains.Storages;
 using Geekbrains.Unit;
 
 namespace Geekbrains

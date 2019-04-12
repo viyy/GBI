@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Geekbrains;
+using Geekbrains.Skills;
 
 namespace DefaultNamespace
 {
@@ -29,6 +30,19 @@ namespace DefaultNamespace
         {
             Tasks.Remove(record);
         }
-        
+
+        public Quest(QuestDto dto)
+        {
+            Id = dto.Id;
+            Name = dto.Name;
+            Description = dto.Description;
+            ZoneId = dto.ZoneId;
+            MapMarkers = dto.MapMarkers;
+            foreach (var task in dto.Tasks)
+            {
+                Tasks.Add(new QuestTask(task));
+            }
+            Reward = new QuestReward(dto.Reward);
+        }
     }
 }

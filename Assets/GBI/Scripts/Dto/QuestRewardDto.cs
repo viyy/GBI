@@ -4,8 +4,6 @@ namespace Geekbrains.Skills
 {
     public class QuestRewardDto
     {
-        public int QuestId { get; set; }
-        
         public int Xp { get; set; }
         
         public int Money { get; set; }
@@ -13,7 +11,7 @@ namespace Geekbrains.Skills
         //TODO: Items base class
        // public List<object> Items { get; private set; } = new List<object>();
         
-        public List<AuraDto> Auras { get; private set; } = new List<AuraDto>();
+        public List<int> Auras { get; private set; } = new List<int>();
         
         //public List<object> Reputations { get; private set; } = new List<object>();
     }

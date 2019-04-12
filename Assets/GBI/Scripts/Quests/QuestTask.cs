@@ -1,3 +1,5 @@
+using Geekbrains.Skills;
+
 namespace DefaultNamespace
 {
     public class QuestTask
@@ -13,5 +15,12 @@ namespace DefaultNamespace
         public bool IsCompleted => CurrentAmount < NeededAmount;
 
         public void AddAmount(int amount) => CurrentAmount += amount;
+
+        public QuestTask(QuestTaskDto dto)
+        {
+            Type = dto.Type;
+            TargetId = dto.TargetId;
+            NeededAmount = dto.NeededAmount;
+        }
     }
 }

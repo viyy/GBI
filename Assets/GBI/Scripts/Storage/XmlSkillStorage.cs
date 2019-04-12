@@ -2,24 +2,25 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Geekbrains;
 using Geekbrains.Skills;
 
-namespace Geekbrains.Storages
+namespace GBI.Scripts.Storage
 {
     public class XmlSkillStorage : ISkillStorage, ISkillSaver
     {
         private const string BasePath = "Assets/GBI/Data/Skills/";
         private const string Suffix = ".xml";
         private const int Capacity = 100;
-        private static readonly Dictionary<int, SkillDto> _cache = new Dictionary<int, SkillDto>(Capacity);
+        private static readonly Dictionary<int, SkillDto> Cache = new Dictionary<int, SkillDto>(Capacity);
         public SkillDto GetSkillInfo(int id)
         {
-            if (_cache.ContainsKey(id)) return _cache[id];
-            if (_cache.Count>Capacity) _cache.Clear();
+            if (Cache.ContainsKey(id)) return Cache[id];
+            if (Cache.Count>Capacity) Cache.Clear();
             var serializer = new XmlSerializer(typeof(SkillDto));
             var reader = new StreamReader(BasePath+id+Suffix);
             var deserialized = (SkillDto)serializer.Deserialize(reader.BaseStream);
-            _cache.Add(id, deserialized);
+            Cache.Add(id, deserialized);
             reader.Close();
             return deserialized;
         }

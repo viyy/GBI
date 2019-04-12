@@ -1,4 +1,4 @@
-namespace Geekbrains.Storages
+namespace GBI.Scripts.Storage
 {
     public class XmlQuestProgressStorage
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using GBI.Scripts.Storage;
 using GBI.Utility;
 using Geekbrains;
 using Geekbrains.Skills;
-using Geekbrains.Storages;
 using UnityEditor;
 using UnityEngine;
 using EG = UnityEditor.EditorGUILayout;
