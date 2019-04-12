@@ -63,6 +63,7 @@ namespace Geekbrains
         private void OnAreaEnter(EventArgs args)
         {
             if (!(args is IdArgs idArgs)) return;
+            if (idArgs.TriggeredUnitId != _character.Id) return;
             QuestUpdate(QuestTaskTypes.FindLocation, idArgs.Id);
         }
         

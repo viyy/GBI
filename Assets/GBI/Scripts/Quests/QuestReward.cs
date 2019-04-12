@@ -14,7 +14,7 @@ namespace DefaultNamespace
         //TODO: Items base class
         public List<object> Items { get; private set; } = new List<object>();
         
-        public List<AuraBase> Auras { get; private set; } = new List<AuraBase>();
+        //public List<AuraBase> Auras { get; private set; } = new List<AuraBase>();
         
         public List<object> Reputations { get; private set; } = new List<object>();
     }

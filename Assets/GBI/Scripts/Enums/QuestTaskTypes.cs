@@ -1,15 +1,16 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace DefaultNamespace
 {
     [Serializable]
     public enum QuestTaskTypes
     {
-        None = 0,
-        KillNpc = 1,
-        CollectItem = 2,
-        TalkWithNpc = 3,
-        UseObject = 4,
-        FindLocation = 5
+        [EnumMember] None = 0,
+        [EnumMember] KillNpc = 1,
+        [EnumMember] CollectItem = 2,
+        [EnumMember] TalkWithNpc = 3,
+        [EnumMember] UseObject = 4,
+        [EnumMember] FindLocation = 5
     }
 }
