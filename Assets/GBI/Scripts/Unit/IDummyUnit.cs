@@ -18,10 +18,11 @@ namespace Geekbrains.Unit
         /// If Unit suffers damage - call this
         /// </summary>
         /// <param name="value">damage w/o reduces from armor etc</param>
+        /// <param name="source">unit that deals damage. Or null if environmental damage (like falling)</param>
         /// <returns>how much damage was taken actually</returns>
-        int TakeDamage(int value);
+        int TakeDamage(int value, IDummyUnit source = null);   //null = environmental damage 
 
-        void Heal(int value);
+        void Heal(int value, IDummyUnit source = null);
 
         void ApplyAura(int id, IDummyUnit caster);
         void ApplyAura(AuraBase aura);
@@ -51,5 +52,7 @@ namespace Geekbrains.Unit
         /// <param name="target">target unit</param>
         /// <returns>Flags of alignment</returns>
         TargetModeTypes GetTargetModeTypesFor(IDummyUnit target);
+
+        void KillUnit(IDummyUnit target);
     }
 }

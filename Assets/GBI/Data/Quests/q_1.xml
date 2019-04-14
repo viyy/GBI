@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<QuestDto xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Id>1</Id>
+  <RequiredQuests />
+  <Name>Test Quest Name </Name>
+  <Description>lorem ipsum</Description>
+  <ZoneId>1</ZoneId>
+  <MapMarkers>
+    <QuestMarkerDto>
+      <MapId>1</MapId>
+      <X>1</X>
+      <Y>0</Y>
+    </QuestMarkerDto>
+  </MapMarkers>
+  <Tasks>
+    <QuestTaskDto>
+      <Type>FindLocation</Type>
+      <TargetId>1</TargetId>
+      <NeededAmount>1</NeededAmount>
+    </QuestTaskDto>
+  </Tasks>
+  <Reward>
+    <Xp>10</Xp>
+    <Money>0</Money>
+    <Auras />
+  </Reward>
+</QuestDto>

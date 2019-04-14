@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using GBI.Scripts.Storage;
 using Geekbrains.Skills.Auras;
-using Geekbrains.Storages;
 using Geekbrains.Unit;
 
 namespace Geekbrains

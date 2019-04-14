@@ -1,13 +1,13 @@
 using System.Collections.Generic;
+using GBI.Scripts.Storage;
 using Geekbrains.Skills;
-using Geekbrains.Storages;
 using Geekbrains.Unit;
 
 namespace Geekbrains
 {
     public static class SkillFactory
     {
-        private static readonly ISkillStorage Storage = new XmlSkillStorage();
+        private static readonly ISkillStorage Storage = new XmlDevSkillStorage();
 
         public static Skill GetSkill(int id, IDummyUnit caster)
         {
