@@ -2,14 +2,13 @@
 <QuestDto xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Id>1</Id>
   <RequiredQuests />
-  <Name />
-  <Description>skdgkfasf
-asfafaf</Description>
+  <Name>Test Quest Name </Name>
+  <Description>lorem ipsum</Description>
   <ZoneId>1</ZoneId>
   <MapMarkers>
     <QuestMarkerDto>
       <MapId>1</MapId>
-      <X>10.5</X>
+      <X>1</X>
       <Y>0</Y>
     </QuestMarkerDto>
   </MapMarkers>

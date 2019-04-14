@@ -9,10 +9,10 @@ namespace DefaultNamespace
         public int TargetId { get; private set; }
         
         public int NeededAmount { get; private set; }
-        
-        public int CurrentAmount { get; private set; }
 
-        public bool IsCompleted => CurrentAmount < NeededAmount;
+        public int CurrentAmount { get; private set; } = 0;
+
+        public bool IsCompleted => CurrentAmount >= NeededAmount;
 
         public void AddAmount(int amount) => CurrentAmount += amount;
 

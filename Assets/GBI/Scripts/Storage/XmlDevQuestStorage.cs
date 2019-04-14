@@ -22,8 +22,10 @@ namespace GBI.Scripts.Storage
             var dQuestDto = (QuestDto)serializer.Deserialize(reader.BaseStream);
             reader.Close();
             serializer = new XmlSerializer(typeof(List<TaskProgressDto>));
+            var dProgressDto = new List<TaskProgressDto>();
+            if (!File.Exists(GetQuestProgressFilePath(id))) return MakeQuest(dQuestDto, dProgressDto);
             reader = new StreamReader(GetQuestProgressFilePath(id));
-            var dProgressDto = (List<TaskProgressDto>) serializer.Deserialize(reader.BaseStream);
+            dProgressDto = (List<TaskProgressDto>) serializer.Deserialize(reader.BaseStream);
             reader.Close();
             return MakeQuest(dQuestDto, dProgressDto);
         }
