@@ -14,7 +14,7 @@ namespace DefaultNamespace
         //TODO: Items base class
         public List<object> Items { get; private set; } = new List<object>();
         
-        public List<AuraBase> Auras { get; private set; } = new List<AuraBase>();
+        public List<int> Auras { get; private set; } = new List<int>();
         
         public List<object> Reputations { get; private set; } = new List<object>();
 
@@ -22,11 +22,7 @@ namespace DefaultNamespace
         {
             Xp = dto.Xp;
             Money = dto.Money;
-            foreach (var auraId in dto.Auras)
-            {
-                //TODO: think about caster
-                Auras.Add(AuraFactory.GetAura(auraId, null));
-            }
+            Auras = dto.Auras;
             //TODO: Items and reputation if any.
 
         }

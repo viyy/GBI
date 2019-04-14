@@ -7,7 +7,7 @@ using Geekbrains.Skills;
 
 namespace GBI.Scripts.Storage
 {
-    public class XmlSkillStorage : ISkillStorage, ISkillSaver
+    public class XmlDevSkillStorage : ISkillStorage, IDevSkillSaver
     {
         private const string BasePath = "Assets/GBI/Data/Skills/";
         private const string Suffix = ".xml";
@@ -33,12 +33,11 @@ namespace GBI.Scripts.Storage
             writer.Close();
         }
 
-        public int GetNewId()
+        public int GetNextId()
         {
             var dir = new DirectoryInfo(BasePath);
             var info = dir.GetFiles("*"+Suffix);
-            var tmp = new List<int>();
-            tmp.Add(0);
+            var tmp = new List<int> {0};
             foreach (var f in info)
             {
                 if (int.TryParse(f.Name, out var i))

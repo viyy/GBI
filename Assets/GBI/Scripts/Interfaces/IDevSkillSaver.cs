@@ -2,9 +2,9 @@ using Geekbrains.Skills;
 
 namespace Geekbrains
 {
-    public interface ISkillSaver
+    public interface IDevSkillSaver
     {
         void SaveSkill(SkillDto dto);
-        int GetNewId();
+        int GetNextId();
     }
 }

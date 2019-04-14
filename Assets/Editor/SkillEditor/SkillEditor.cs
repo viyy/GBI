@@ -23,14 +23,14 @@ public class SkillEditor : EditorWindow
     private static bool _initFlag;
     private static int _newId = 1;
     private int _ri = -1;
-    private static ISkillSaver _saver = new XmlSkillStorage();
+    private static IDevSkillSaver _saver = new XmlDevSkillStorage();
     private SkillEffectDto _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None};
 
     [MenuItem("GBI/Skill Editor")]
     public static void ShowWindow()
     {
         //Show existing window instance. If one doesn't exist, make one.
-        EditorWindow.GetWindow(typeof(SkillEditor));
+        GetWindow(typeof(SkillEditor));
         Debug.Log("Window Loaded.");
     }
 
@@ -69,7 +69,7 @@ public class SkillEditor : EditorWindow
             }
         };
         _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None};
-        _newId = _saver.GetNewId();
+        _newId = _saver.GetNextId();
     }
 
     private void ResetSkill()
@@ -84,7 +84,7 @@ public class SkillEditor : EditorWindow
             }
         };
         _seDto = new SkillEffectDto {EffectType = SkillEffectTypes.None};
-        _newId = _saver.GetNewId();
+        _newId = _saver.GetNextId();
     }
 
     public void OnGUI()
@@ -92,8 +92,8 @@ public class SkillEditor : EditorWindow
         if (!_initFlag)
         {
             _initFlag = true;
-            _saver = new XmlSkillStorage();
-            _newId = _saver.GetNewId();
+            _saver = new XmlDevSkillStorage();
+            _newId = _saver.GetNextId();
         }
 
         if (_ri != -1)
@@ -115,7 +115,7 @@ public class SkillEditor : EditorWindow
         for (var i = 0; i < _dto.RequiredSkills.Count; i++)
             _dto.RequiredSkills[i] = EG.DelayedIntField("Required Skill ID:", _dto.RequiredSkills[i]);
 
-        _ri = EG.DelayedIntField("Required Skill ID:", _ri);
+        _ri = EG.DelayedIntField("Add Required Skill ID:", _ri);
         _dto.Name = EG.DelayedTextField("Skill Name:", _dto.Name);
         _dto.Range = EG.DelayedFloatField("Skill Range:", _dto.Range);
         _dto.Radius = EG.DelayedFloatField("Radius of AoE:", _dto.Radius);

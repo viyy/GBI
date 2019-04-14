@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using DefaultNamespace;
+using GBI.Scripts.Dto;
 using Geekbrains;
 using Geekbrains.Skills;
 
 namespace GBI.Scripts.Storage
 {
-    public class XmlQuestStorage : IQuestStorage
+    public class XmlDevQuestStorage : IQuestStorage, IDevQuestSaver
     {
         private const string BasePath = "Assets/GBI/Data/Quests/";
         private const string QuestPrefix = "q_";
         private const string TaskPrefix = "t_";
         private const string Suffix = ".xml";
-        public Quest GetQuest(int id)
+        public Quest GetQuest(int id, int unitId)
         {
             var serializer = new XmlSerializer(typeof(QuestDto));
             var reader = new StreamReader(GetQuestFilePath(id));
@@ -45,6 +47,31 @@ namespace GBI.Scripts.Storage
         private static string GetQuestProgressFilePath(int id)
         {
             return BasePath + TaskPrefix + id + Suffix;
+        }
+
+        public void SaveQuest(QuestDto dto)
+        {
+            dto.Id = GetNextId();
+            var serializer = new XmlSerializer(typeof(QuestDto));
+            var writer = new StreamWriter(GetQuestFilePath(dto.Id));
+            serializer.Serialize(writer.BaseStream, dto);
+            writer.Close();
+        }
+
+        public int GetNextId()
+        {
+            var dir = new DirectoryInfo(BasePath);
+            var info = dir.GetFiles("*"+Suffix);
+            var tmp = new List<int> {0};
+            foreach (var f in info)
+            {
+                if (int.TryParse(f.Name.Remove(0,2), out var i))
+                {
+                    tmp.Add(i);
+                }
+            }
+            tmp.Sort();
+            return tmp.Last()+1;
         }
     }
 }

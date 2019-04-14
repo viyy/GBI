@@ -7,7 +7,7 @@ namespace Geekbrains
 {
     public static class SkillFactory
     {
-        private static readonly ISkillStorage Storage = new XmlSkillStorage();
+        private static readonly ISkillStorage Storage = new XmlDevSkillStorage();
 
         public static Skill GetSkill(int id, IDummyUnit caster)
         {
